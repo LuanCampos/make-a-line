@@ -4,15 +4,34 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public static GameManager instance;
+	public GameObject linePrefab;
+	
+	[SerializeField]
+	private GameObject[] lines;
+	
+	void Awake()
+	{
+		MakeSingleton();
+	}
+	
+	void MakeSingleton()
+	{
+		if (instance != null)
+		{
+			Destroy (gameObject);
+		}
+		
+		else
+		{
+			instance = this;
+			DontDestroyOnLoad(gameObject);
+		}
+	}
+	
+	public void SelectLine(int index)
+	{
+		linePrefab = lines[index];
+	}
+	
 }
