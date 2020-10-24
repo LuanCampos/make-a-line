@@ -5,6 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
+	private GameObject pausePanel;
+	private GameObject gameOverPanel;
+	
+	void Awake()
+	{
+		GetGameplayPanels();
+	}
+	
 	public void PlayGame()
 	{
 		SceneManager.LoadScene("Gameplay");
@@ -31,7 +39,26 @@ public class UIController : MonoBehaviour
 			GameManager.instance.SelectLine(index);
 			ShowSelectedIcon(index);
 		}
-		
+	}
+	
+	public void Pause()
+	{
+		pausePanel.SetActive(true);
+	}
+	
+	public void Continue()
+	{
+		pausePanel.SetActive(false);
+	}
+	
+	public void PlayAgain()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+	}
+	
+	public void ExitToMenu()
+	{
+		SceneManager.LoadScene("MainMenu");
 	}
 	
 	private void ShowSelectedIcon(int index)
@@ -49,6 +76,17 @@ public class UIController : MonoBehaviour
 			{
 				buttons[i].transform.GetChild(0).gameObject.SetActive(false);
 			}
+		}
+	}
+	
+	private void GetGameplayPanels()
+	{
+		if (GameObject.Find("Pause Panel") != null)
+		{
+			pausePanel = GameObject.Find("Pause Panel");
+			gameOverPanel = GameObject.Find("Game Over Panel");
+			pausePanel.SetActive(false);
+			gameOverPanel.SetActive(false);
 		}
 	}
 	
