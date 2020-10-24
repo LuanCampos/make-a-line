@@ -29,6 +29,26 @@ public class UIController : MonoBehaviour
 		if (GameManager.instance != null)
 		{
 			GameManager.instance.SelectLine(index);
+			ShowSelectedIcon(index);
+		}
+		
+	}
+	
+	private void ShowSelectedIcon(int index)
+	{
+		GameObject[] buttons = GameObject.FindGameObjectsWithTag("SelectLine");
+		
+		for (int i = 0; i < buttons.Length; i++)
+		{
+			if (int.Parse(buttons[i].name) == index)
+			{
+				buttons[i].transform.GetChild(0).gameObject.SetActive(true);
+			}
+			
+			else
+			{
+				buttons[i].transform.GetChild(0).gameObject.SetActive(false);
+			}
 		}
 	}
 	
