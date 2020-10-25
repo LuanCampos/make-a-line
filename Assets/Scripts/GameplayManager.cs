@@ -6,21 +6,23 @@ using TMPro;
 
 public class GameplayManager : MonoBehaviour
 {
-	private Transform player;
-	private float maxPlayerPos;
-	private float minPlayerPos;
+	private Transform ball;
+	private float maxballPos;
+	private float minballPos;
 	private float timer;
 	private float score;
 	private float bonus;
 	private TextMeshProUGUI timerText;
 	private TextMeshProUGUI scoreText;
+	private UIController uiController;
 	
 	void Awake()
 	{
-		//player
-		//timerText
-		//scoreText
-		//timer
+		ball = GameObject.Find("Ball").transform;
+		timerText = GameObject.Find("Timer Text").GetComponent<TextMeshProUGUI>();
+		scoreText = GameObject.Find("Score Text").GetComponent<TextMeshProUGUI>();
+		timer = 60.3f;
+		uiController = GameObject.Find("UI Controller").GetComponent<UIController>();
 	}
 	
 	void Update()
@@ -33,23 +35,22 @@ public class GameplayManager : MonoBehaviour
 	
 	private void CheckGameOver()
 	{
-		if (player.position.y < -12 || timer <= 0)
+		if (ball.position.y < -12 || timer <= 0)
 		{
-			Time.timeScale = 0f;
-			//gameOverMenuUI.SetActive(true);
+			uiController.ShowGameOverPanel();
 		}
 	}
 	
 	private void CheckAddScore()
 	{
-		if (player.position.x > maxPlayerPos)
+		if (ball.position.x > maxballPos)
 		{
-			maxPlayerPos = player.position.x;
+			maxballPos = ball.position.x;
 		}
 		
-		if (player.position.x < minPlayerPos)
+		if (ball.position.x < minballPos)
 		{
-			minPlayerPos = player.position.x;
+			minballPos = ball.position.x;
 		}
 	}
 	
@@ -61,7 +62,7 @@ public class GameplayManager : MonoBehaviour
 	
 	private void CountScore()
 	{
-		score = (60 - timer + ((maxPlayerPos + minPlayerPos) * 3)) * 3 + bonus;
+		score = (60 - timer + ((maxballPos - minballPos) * 3)) * 3 + bonus;
 		scoreText.text = score.ToString("#.");
 	}
 	

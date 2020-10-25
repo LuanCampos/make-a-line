@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class LineCreator : MonoBehaviour
 {
-	public GameObject linePrefab;
+	private GameObject linePrefab;
 	private GameObject line;
 	private Line activeLine;
-
+	
+	void Awake()
+	{
+		if (GameManager.instance != null)
+		{
+			linePrefab = GameManager.instance.linePrefab;
+		}
+	}
+	
 	void Update()
 	{
 		if (Input.GetMouseButtonDown(0))

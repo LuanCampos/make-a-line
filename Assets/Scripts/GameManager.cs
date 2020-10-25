@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
 	public static GameManager instance;
 	public GameObject linePrefab;
+	public bool isTimeFreeze;
 	
 	[SerializeField]
 	private GameObject[] lines;
@@ -32,6 +33,16 @@ public class GameManager : MonoBehaviour
 	public void SelectLine(int index)
 	{
 		linePrefab = lines[index];
+	}
+	
+	public bool GetIsTimeFreeze()
+	{
+		return this.isTimeFreeze;
+	}
+	
+	public void SetIsTimeFreeze(bool isFreeze)
+	{
+		this.isTimeFreeze = isFreeze;
 	}
 	
 }

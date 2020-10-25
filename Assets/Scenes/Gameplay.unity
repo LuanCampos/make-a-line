@@ -1021,7 +1021,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d6d69718e7060546b7d7aab6985b3ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linePrefab: {fileID: 0}
+  linePrefab: {fileID: 3291226941507216718, guid: b456cc6921a51f34e8d086d2dc33aa82,
+    type: 3}
   lines: []
 --- !u!4 &768370267
 Transform:
@@ -1114,7 +1115,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1004596515
 RectTransform:
@@ -1385,8 +1386,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22e3852773872c54698403d025420d39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linePrefab: {fileID: 3291226941507216718, guid: b456cc6921a51f34e8d086d2dc33aa82,
-    type: 3}
 --- !u!114 &1247251507
 MonoBehaviour:
   m_ObjectHideFlags: 0

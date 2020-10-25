@@ -51,6 +51,11 @@ public class UIController : MonoBehaviour
 		pausePanel.SetActive(false);
 	}
 	
+	public void ShowGameOverPanel()
+	{
+		gameOverPanel.SetActive(true);
+	}
+	
 	public void PlayAgain()
 	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
