@@ -7,31 +7,41 @@ public class LineCreator : MonoBehaviour
 	private GameObject linePrefab;
 	private GameObject line;
 	private Line activeLine;
+	private GameManager gameManager;
 	
 	void Awake()
 	{
 		if (GameManager.instance != null)
 		{
-			linePrefab = GameManager.instance.linePrefab;
+			gameManager = GameManager.instance;
+			linePrefab = gameManager.GetSelectLine();
 		}
 	}
 	
 	void Update()
 	{
-		if (Input.GetMouseButtonDown(0))
+		if (!gameManager.GetIsTimeFreeze())
+		{
+			if (Input.GetMouseButtonDown(0))
+			{
+				DestroyOldLine();
+				MakeNewLine();
+			}
+
+			if (Input.GetMouseButtonUp(0))
+			{
+				activeLine = null;
+			}
+
+			if (activeLine != null)
+			{
+				UpdateLine();
+			}
+		}
+		
+		else
 		{
 			DestroyOldLine();
-			MakeNewLine();
-		}
-
-		if (Input.GetMouseButtonUp(0))
-		{
-			activeLine = null;
-		}
-
-		if (activeLine != null)
-		{
-			UpdateLine();
 		}
 
 	}

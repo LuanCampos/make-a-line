@@ -1021,9 +1021,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d6d69718e7060546b7d7aab6985b3ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTimeFreeze: 0
   linePrefab: {fileID: 3291226941507216718, guid: b456cc6921a51f34e8d086d2dc33aa82,
     type: 3}
-  lines: []
+  lines:
+  - {fileID: 3291226941507216718, guid: b456cc6921a51f34e8d086d2dc33aa82, type: 3}
+  - {fileID: 3291226941507216718, guid: ecb7e05adc1801143ba753ca0adc4958, type: 3}
+  - {fileID: 3291226941507216718, guid: 8e28f55f667d8324caec0eced0d0a0ac, type: 3}
+  - {fileID: 3291226941507216718, guid: be231c93dbc732a42b507488a57fff0d, type: 3}
 --- !u!4 &768370267
 Transform:
   m_ObjectHideFlags: 0

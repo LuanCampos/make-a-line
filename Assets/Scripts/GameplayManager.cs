@@ -15,6 +15,7 @@ public class GameplayManager : MonoBehaviour
 	private TextMeshProUGUI timerText;
 	private TextMeshProUGUI scoreText;
 	private UIController uiController;
+	private GameManager gameManager;
 	
 	void Awake()
 	{
@@ -23,14 +24,42 @@ public class GameplayManager : MonoBehaviour
 		scoreText = GameObject.Find("Score Text").GetComponent<TextMeshProUGUI>();
 		timer = 60.3f;
 		uiController = GameObject.Find("UI Controller").GetComponent<UIController>();
+		
+		if (GameManager.instance != null)
+		{
+			gameManager = GameManager.instance;
+			gameManager.SetIsTimeFreeze(true);
+			Time.timeScale = 0;
+		}
+	}
+	
+	void Start()
+	{
+		gameManager.SetIsTimeFreeze(false);
 	}
 	
 	void Update()
     {
-		CheckGameOver();
-		CheckAddScore();
-		CountTime();
-		CountScore();		
+		if (!gameManager.GetIsTimeFreeze())
+		{
+			if (Time.timeScale == 0)
+			{
+				Time.timeScale = 1;
+			}
+			
+			CheckGameOver();
+			CheckAddScore();
+			CountTime();
+			CountScore();
+		}
+		
+		else
+		{
+			if (Time.timeScale != 0)
+			{
+				Time.timeScale = 0;
+			}
+		}
     }
 	
 	private void CheckGameOver()
@@ -38,6 +67,7 @@ public class GameplayManager : MonoBehaviour
 		if (ball.position.y < -12 || timer <= 0)
 		{
 			uiController.ShowGameOverPanel();
+			gameManager.SetIsTimeFreeze(true);
 		}
 	}
 	
@@ -62,7 +92,7 @@ public class GameplayManager : MonoBehaviour
 	
 	private void CountScore()
 	{
-		score = (60 - timer + ((maxballPos - minballPos) * 3)) * 3 + bonus;
+		score = (60.3f - timer + ((maxballPos - minballPos) * 4)) * 2 + bonus;
 		scoreText.text = score.ToString("#.");
 	}
 	

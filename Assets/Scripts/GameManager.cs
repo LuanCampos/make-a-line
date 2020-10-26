@@ -5,8 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 	public static GameManager instance;
-	public GameObject linePrefab;
 	public bool isTimeFreeze;
+	public GameObject linePrefab;
 	
 	[SerializeField]
 	private GameObject[] lines;
@@ -35,14 +35,19 @@ public class GameManager : MonoBehaviour
 		linePrefab = lines[index];
 	}
 	
-	public bool GetIsTimeFreeze()
+	public GameObject GetSelectLine()
 	{
-		return this.isTimeFreeze;
+		return this.linePrefab;
 	}
 	
 	public void SetIsTimeFreeze(bool isFreeze)
 	{
 		this.isTimeFreeze = isFreeze;
+	}
+	
+	public bool GetIsTimeFreeze()
+	{
+		return this.isTimeFreeze;
 	}
 	
 }

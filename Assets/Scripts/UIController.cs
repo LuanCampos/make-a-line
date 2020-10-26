@@ -7,10 +7,20 @@ public class UIController : MonoBehaviour
 {
 	private GameObject pausePanel;
 	private GameObject gameOverPanel;
+	private GameObject gameplayPanel;
+	private GameManager gameManager;
 	
 	void Awake()
 	{
 		GetGameplayPanels();
+	}
+	
+	void Start()
+	{
+		if (GameManager.instance != null)
+		{
+			gameManager = GameManager.instance;
+		}
 	}
 	
 	public void PlayGame()
@@ -44,16 +54,19 @@ public class UIController : MonoBehaviour
 	public void Pause()
 	{
 		pausePanel.SetActive(true);
+		gameManager.SetIsTimeFreeze(true);
 	}
 	
 	public void Continue()
 	{
 		pausePanel.SetActive(false);
+		gameManager.SetIsTimeFreeze(false);
 	}
 	
 	public void ShowGameOverPanel()
 	{
 		gameOverPanel.SetActive(true);
+		gameplayPanel.SetActive(false);
 	}
 	
 	public void PlayAgain()
@@ -90,6 +103,7 @@ public class UIController : MonoBehaviour
 		{
 			pausePanel = GameObject.Find("Pause Panel");
 			gameOverPanel = GameObject.Find("Game Over Panel");
+			gameplayPanel = GameObject.Find("Gameplay Panel");
 			pausePanel.SetActive(false);
 			gameOverPanel.SetActive(false);
 		}
