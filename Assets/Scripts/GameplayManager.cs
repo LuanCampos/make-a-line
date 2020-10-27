@@ -26,7 +26,7 @@ public class GameplayManager : MonoBehaviour
 		timerText = GameObject.Find("Timer Text").GetComponent<TextMeshProUGUI>();
 		initialTimerText = GameObject.Find("Initial Timer Text");
 		finalTimerText = GameObject.Find("Final Timer Text");
-		timer = 10.4f;
+		timer = 60.4f;
 		uiController = GameObject.Find("UI Controller").GetComponent<UIController>();
 		initialTimerText.SetActive(false);
 		finalTimerText.SetActive(false);
