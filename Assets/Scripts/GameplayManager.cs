@@ -26,7 +26,7 @@ public class GameplayManager : MonoBehaviour
 		timerText = GameObject.Find("Timer Text").GetComponent<TextMeshProUGUI>();
 		initialTimerText = GameObject.Find("Initial Timer Text");
 		finalTimerText = GameObject.Find("Final Timer Text");
-		timer = 60f;
+		timer = 60.4f;
 		uiController = GameObject.Find("UI Controller").GetComponent<UIController>();
 		initialTimerText.SetActive(false);
 		finalTimerText.SetActive(false);
@@ -67,12 +67,15 @@ public class GameplayManager : MonoBehaviour
 			}
 		}
 		
-		// if timer < 6 show final timer
+		if (timer < 5.5f)
+		{
+			FinalTimer();
+		}
     }
 	
 	private void CheckGameOver()
 	{
-		if (ball.position.y < -12 || timer <= 0)
+		if (ball.position.y < -12 || timer <= 0.3f)
 		{
 			gameManager.SetLastScore((int)score);
 			uiController.ShowGameOverPanel();
@@ -101,7 +104,7 @@ public class GameplayManager : MonoBehaviour
 	
 	private void CountScore()
 	{
-		score = (60 - timer + ((maxballPos - minballPos) * 4)) * 2 + bonus;
+		score = (60.4f - timer + ((maxballPos - minballPos) * 4)) * 2 + bonus;
 		scoreText.text = score.ToString("#.");
 	}
 	
@@ -117,6 +120,16 @@ public class GameplayManager : MonoBehaviour
 		
 		initialTimerText.SetActive(false);
 		gameManager.SetIsTimeFreeze(false);
+	}
+	
+	private void FinalTimer()
+	{
+		if (!finalTimerText.active)
+		{
+			finalTimerText.SetActive(true);
+		}
+		
+		finalTimerText.GetComponent<TextMeshProUGUI>().text = timer.ToString("#.");
 	}
 	
 }
