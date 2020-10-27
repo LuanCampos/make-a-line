@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
 	public static GameManager instance;
 	public bool isTimeFreeze;
+	public int lastScore;
 	public GameObject linePrefab;
 	
 	[SerializeField]
@@ -48,6 +49,16 @@ public class GameManager : MonoBehaviour
 	public bool GetIsTimeFreeze()
 	{
 		return this.isTimeFreeze;
+	}
+	
+	public void SetLastScore(int score)
+	{
+		this.lastScore = score;
+	}
+	
+	public int GetLastScore()
+	{
+		return this.lastScore;
 	}
 	
 }

@@ -66,6 +66,7 @@ public class GameplayManager : MonoBehaviour
 	{
 		if (ball.position.y < -12 || timer <= 0)
 		{
+			gameManager.SetLastScore((int)score);
 			uiController.ShowGameOverPanel();
 			gameManager.SetIsTimeFreeze(true);
 		}

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class UIController : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class UIController : MonoBehaviour
 	private GameObject gameOverPanel;
 	private GameObject gameplayPanel;
 	private GameManager gameManager;
+	private TextMeshProUGUI finalScoreText;
 	
 	void Awake()
 	{
@@ -65,6 +67,7 @@ public class UIController : MonoBehaviour
 	
 	public void ShowGameOverPanel()
 	{
+		finalScoreText.text = gameManager.GetLastScore().ToString("");
 		gameOverPanel.SetActive(true);
 		gameplayPanel.SetActive(false);
 	}
@@ -104,6 +107,7 @@ public class UIController : MonoBehaviour
 			pausePanel = GameObject.Find("Pause Panel");
 			gameOverPanel = GameObject.Find("Game Over Panel");
 			gameplayPanel = GameObject.Find("Gameplay Panel");
+			finalScoreText = GameObject.Find("Final Score Text").GetComponent<TextMeshProUGUI>();
 			pausePanel.SetActive(false);
 			gameOverPanel.SetActive(false);
 		}
