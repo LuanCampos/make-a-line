@@ -41,8 +41,7 @@ public class GameplayManager : MonoBehaviour
 	
 	void Start()
 	{
-		// InitialTimer();
-		gameManager.SetIsTimeFreeze(false); // put this at the end of initial timer
+		StartCoroutine(InitialTimer());
 	}
 	
 	void Update()
@@ -104,6 +103,20 @@ public class GameplayManager : MonoBehaviour
 	{
 		score = (60 - timer + ((maxballPos - minballPos) * 4)) * 2 + bonus;
 		scoreText.text = score.ToString("#.");
+	}
+	
+	IEnumerator InitialTimer()
+	{
+		initialTimerText.SetActive(true);
+		
+		for (int i = 3; i > 0; i--)
+		{
+			initialTimerText.GetComponent<TextMeshProUGUI>().text = i.ToString("");
+			yield return new WaitForSecondsRealtime(1);
+		}
+		
+		initialTimerText.SetActive(false);
+		gameManager.SetIsTimeFreeze(false);
 	}
 	
 }
