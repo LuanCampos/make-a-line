@@ -69,7 +69,8 @@ public class UIController : MonoBehaviour
 	{
 		finalScoreText.text = gameManager.GetLastScore().ToString("");
 		gameOverPanel.SetActive(true);
-		gameplayPanel.SetActive(false);
+		gameplayPanel.GetComponent<Animator>().Play("FadeOut");
+		gameOverPanel.GetComponent<Animator>().Play("FadeIn");
 	}
 	
 	public void PlayAgain()

@@ -26,7 +26,7 @@ public class GameplayManager : MonoBehaviour
 		timerText = GameObject.Find("Timer Text").GetComponent<TextMeshProUGUI>();
 		initialTimerText = GameObject.Find("Initial Timer Text");
 		finalTimerText = GameObject.Find("Final Timer Text");
-		timer = 60.4f;
+		timer = 10.4f;
 		uiController = GameObject.Find("UI Controller").GetComponent<UIController>();
 		initialTimerText.SetActive(false);
 		finalTimerText.SetActive(false);
@@ -41,6 +41,7 @@ public class GameplayManager : MonoBehaviour
 	
 	void Start()
 	{
+		GameObject.Find("Gameplay Panel").GetComponent<Animator>().Play("FadeIn");
 		StartCoroutine(InitialTimer());
 	}
 	
@@ -127,6 +128,7 @@ public class GameplayManager : MonoBehaviour
 		if (!finalTimerText.active)
 		{
 			finalTimerText.SetActive(true);
+			GameObject.Find("Gameplay Panel").GetComponent<Animator>().Play("TimerFadeIn");
 		}
 		
 		finalTimerText.GetComponent<TextMeshProUGUI>().text = timer.ToString("#.");

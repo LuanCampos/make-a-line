@@ -1109,7 +1109,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 16777215
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -1811,6 +1811,7 @@ GameObject:
   - component: {fileID: 1356338240}
   - component: {fileID: 1356338239}
   - component: {fileID: 1356338238}
+  - component: {fileID: 1356338241}
   m_Layer: 5
   m_Name: Game Over Panel
   m_TagString: Untagged
@@ -1890,6 +1891,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356338236}
   m_CullTransparentMesh: 0
+--- !u!95 &1356338241
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356338236}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8fa64fb6f92f96c4d98ba2f32a119c32, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1434224733
 GameObject:
   m_ObjectHideFlags: 0
@@ -2358,6 +2378,7 @@ GameObject:
   - component: {fileID: 2141129010}
   - component: {fileID: 2141129009}
   - component: {fileID: 2141129008}
+  - component: {fileID: 2141129011}
   m_Layer: 5
   m_Name: Gameplay Panel
   m_TagString: Untagged
@@ -2440,3 +2461,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2141129006}
   m_CullTransparentMesh: 0
+--- !u!95 &2141129011
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141129006}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 88d0a1e2138f8d94b988a01553aecda5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
