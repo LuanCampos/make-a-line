@@ -81,6 +81,8 @@ public class UIController : MonoBehaviour
 	
 	public void ExitToMenu()
 	{
+		gameManager.SetIsTimeFreeze(false);
+		Time.timeScale = 1;
 		SceneManager.LoadScene("MainMenu");
 	}
 	
