@@ -12,6 +12,8 @@ public class UIController : MonoBehaviour
 	private GameManager gameManager;
 	private TextMeshProUGUI finalScoreText;
 	
+	// can't pause during initial countdown
+	
 	void Awake()
 	{
 		GetGameplayPanels();

@@ -12,18 +12,24 @@ public class GameplayManager : MonoBehaviour
 	private float timer;
 	private float score;
 	private float bonus;
-	private TextMeshProUGUI timerText;
 	private TextMeshProUGUI scoreText;
+	private TextMeshProUGUI timerText;
+	private GameObject initialTimerText;
+	private GameObject finalTimerText;
 	private UIController uiController;
 	private GameManager gameManager;
 	
 	void Awake()
 	{
 		ball = GameObject.Find("Ball").transform;
-		timerText = GameObject.Find("Timer Text").GetComponent<TextMeshProUGUI>();
 		scoreText = GameObject.Find("Score Text").GetComponent<TextMeshProUGUI>();
-		timer = 60.3f;
+		timerText = GameObject.Find("Timer Text").GetComponent<TextMeshProUGUI>();
+		initialTimerText = GameObject.Find("Initial Timer Text");
+		finalTimerText = GameObject.Find("Final Timer Text");
+		timer = 60f;
 		uiController = GameObject.Find("UI Controller").GetComponent<UIController>();
+		initialTimerText.SetActive(false);
+		finalTimerText.SetActive(false);
 		
 		if (GameManager.instance != null)
 		{
@@ -35,7 +41,8 @@ public class GameplayManager : MonoBehaviour
 	
 	void Start()
 	{
-		gameManager.SetIsTimeFreeze(false);
+		// InitialTimer();
+		gameManager.SetIsTimeFreeze(false); // put this at the end of initial timer
 	}
 	
 	void Update()
@@ -60,6 +67,8 @@ public class GameplayManager : MonoBehaviour
 				Time.timeScale = 0;
 			}
 		}
+		
+		// if timer < 6 show final timer
     }
 	
 	private void CheckGameOver()
@@ -93,7 +102,7 @@ public class GameplayManager : MonoBehaviour
 	
 	private void CountScore()
 	{
-		score = (60.3f - timer + ((maxballPos - minballPos) * 4)) * 2 + bonus;
+		score = (60 - timer + ((maxballPos - minballPos) * 4)) * 2 + bonus;
 		scoreText.text = score.ToString("#.");
 	}
 	
