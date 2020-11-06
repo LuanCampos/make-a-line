@@ -9,9 +9,9 @@ public class Spin : MonoBehaviour
 	[SerializeField]
 	private float growSpeed = .005f;
 	[SerializeField]
-	private float minScale = .9f;
+	private float minScale = .7f;
 	[SerializeField]
-	private float maxScale = 1.3f;
+	private float maxScale = .9f;
 	
 	private bool gettingBigger;
 	
