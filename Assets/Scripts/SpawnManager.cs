@@ -20,7 +20,7 @@ public class SpawnManager : MonoBehaviour
 	{
 		index = Random.Range(0, shapes.Length);
         shape = shapes[index];
-		GameObject newShape = Instantiate (shape, spawnPos, Quaternion.Euler(new Vector3(0, 0, 0)));
+		Instantiate (shape, spawnPos, Quaternion.Euler(new Vector3(0, 0, 0)));
 	}
 	
 }

@@ -17,9 +17,10 @@ public class Spin : MonoBehaviour
 	
     void FixedUpdate()
     {
-        if (transform.position.y < -9f || transform.position.y > 9f)
+        if (transform.position.y < -6f || transform.position.y > 6f)
 		{
-			transform.position = new Vector3(transform.position.x, transform.position.y * -.95f, transform.position.z);
+			//transform.position = new Vector3(transform.position.x, transform.position.y * -.95f, transform.position.z); // from 6f to 9f on if statement
+			moveSpeed = new Vector2(moveSpeed.x, -moveSpeed.y);
 		}
 		
 		rb.rotation += rotationSpeed;
