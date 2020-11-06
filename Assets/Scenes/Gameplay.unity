@@ -222,7 +222,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.12, y: 5.12}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1715,6 +1715,7 @@ GameObject:
   - component: {fileID: 1247251505}
   - component: {fileID: 1247251506}
   - component: {fileID: 1247251507}
+  - component: {fileID: 1247251508}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1760,6 +1761,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c90c3e7c029c33941972e5c74f88603f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1247251508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247251504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e22148b7e9b72274184a4bd58e620da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shapes:
+  - {fileID: 7839022017102200228, guid: a71bc505f72718c418f864168e8c4f61, type: 3}
+  - {fileID: 8974767980033293208, guid: 909d650624934074e97cfc8ff017df27, type: 3}
+  - {fileID: 8070339232735552507, guid: e7551018f855f9c4a9cb5dd1ce4e0ed4, type: 3}
+  - {fileID: 7015841368242482523, guid: ac804ef1045e40d4d9e2521eb362094c, type: 3}
+  - {fileID: 466981207602036633, guid: b3161061bc862a745a741b0a81141387, type: 3}
+  - {fileID: 8748144534264043570, guid: cb0df6c7017b6674dbc25dd762ce5e0c, type: 3}
+  - {fileID: 406926690224476498, guid: 1b20767769aeec841a9a644d3a85f9d4, type: 3}
+  - {fileID: 1558464319372341869, guid: 3f980aacb3b3f224ba59f11bd2e39414, type: 3}
+  - {fileID: 1333886776223192186, guid: df4e378007ba0b84ca12a54a22e97bbf, type: 3}
+  - {fileID: 1337692048350845540, guid: e99209ea14602c148996f82c3f9a8a06, type: 3}
 --- !u!1 &1250123538
 GameObject:
   m_ObjectHideFlags: 0

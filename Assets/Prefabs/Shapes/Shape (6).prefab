@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 406926690224476501}
   - component: {fileID: 406926690224476500}
   - component: {fileID: 406926690224476499}
+  - component: {fileID: 845997319756712548}
+  - component: {fileID: 1930676280258019964}
   m_Layer: 0
-  m_Name: Form (6)
+  m_Name: Shape (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -302,3 +304,36 @@ PolygonCollider2D:
       - {x: -3.8149998, y: -2.445}
       - {x: -3.735, y: -2.395}
       - {x: -3.675, y: -2.345}
+--- !u!50 &845997319756712548
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406926690224476498}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &1930676280258019964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406926690224476498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34bf05e2e7f0ca54f8980e7113252eca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
