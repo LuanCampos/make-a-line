@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Line
   - SelectLine
+  - Ball
   layers:
   - Default
   - TransparentFX

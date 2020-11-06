@@ -4,23 +4,16 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-	[SerializeField]
-	private GameObject[] shapes;
-	
-	private GameObject shape;
-	private Vector3 spawnPos = new Vector3(10, 0, 0);
-	private int index;
+	public GameObject[] shapes;
 	
     void Start()
     {
-        SpawnShape();
+        SpawnShape(new Vector3(10, 0, 0));
     }
 	
-	private void SpawnShape()
+	public void SpawnShape(Vector3 spawnPos)
 	{
-		index = Random.Range(0, shapes.Length);
-        shape = shapes[index];
-		Instantiate (shape, spawnPos, Quaternion.Euler(new Vector3(0, 0, 0)));
+		Instantiate (shapes[Random.Range(0, shapes.Length)], spawnPos, Quaternion.Euler(new Vector3(0, 0, 0)));
 	}
 	
 }
