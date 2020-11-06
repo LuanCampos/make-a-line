@@ -4,27 +4,41 @@ using UnityEngine;
 
 public class Spin : MonoBehaviour
 {
-	private Rigidbody2D rb;
-	private Vector2 moveSpeed;
-	private float rotationSpeed;
+	[SerializeField]
+	private float rotationSpeed = .5f;
+	[SerializeField]
+	private float growSpeed = .005f;
+	[SerializeField]
+	private float minScale = .9f;
+	[SerializeField]
+	private float maxScale = 1.3f;
 	
-	void Start()
-	{
-		rb = this.GetComponent<Rigidbody2D>();
-		moveSpeed = new Vector2(Random.Range(-.015f, .015f), Random.Range(-.015f, .015f));
-		rotationSpeed = Random.Range(-.65f, .65f);
-	}
+	private bool gettingBigger;
 	
     void FixedUpdate()
     {
-        if (transform.position.y < -6f || transform.position.y > 6f)
+        transform.Rotate(0f, 0f, rotationSpeed, Space.Self);
+		
+		if (transform.localScale.x <= minScale)
 		{
-			//transform.position = new Vector3(transform.position.x, transform.position.y * -.95f, transform.position.z); // from 6f to 9f on if statement
-			moveSpeed = new Vector2(moveSpeed.x, -moveSpeed.y);
+			gettingBigger = true;
 		}
 		
-		rb.rotation += rotationSpeed;
-		rb.position += moveSpeed;
+		if (transform.localScale.x >= maxScale)
+		{
+			gettingBigger = false;
+		}
+		
+		if (gettingBigger)
+		{
+			transform.localScale += new Vector3(growSpeed, growSpeed, 0);
+		}
+			
+		else
+		{
+			transform.localScale -= new Vector3(growSpeed, growSpeed, 0);
+		}
+		
     }
 	
 }
