@@ -6,9 +6,12 @@ using TMPro;
 
 public class GameplayManager : MonoBehaviour
 {
+	[HideInInspector]
+	public float addScore;
+	[HideInInspector]
+	public float addTime;
+	
 	private Transform ball;
-	private float maxballPos;
-	private float minballPos;
 	private float timer;
 	private float score;
 	private float bonus;
@@ -55,7 +58,7 @@ public class GameplayManager : MonoBehaviour
 			}
 			
 			CheckGameOver();
-			CheckAddScore();
+			CheckAddScoreAndTime();
 			CountTime();
 			CountScore();
 		}
@@ -74,6 +77,16 @@ public class GameplayManager : MonoBehaviour
 		}
     }
 	
+	public void AddScore(float addScore)
+	{
+		this.addScore += addScore;
+	}
+	
+	public void AddTime(float addTime)
+	{
+		this.addTime += addTime;
+	}
+	
 	private void CheckGameOver()
 	{
 		if (ball.position.y < -12 || timer <= 0.3f)
@@ -84,16 +97,27 @@ public class GameplayManager : MonoBehaviour
 		}
 	}
 	
-	private void CheckAddScore()
+	private void CheckAddScoreAndTime()
 	{
-		if (ball.position.x > maxballPos)
+		if (addScore > 0f)
 		{
-			maxballPos = ball.position.x;
+			bonus += addScore;
+			addScore = 0f;
 		}
 		
-		if (ball.position.x < minballPos)
+		if (addTime != 0f)
 		{
-			minballPos = ball.position.x;
+			if (timer + addTime > 0f)
+			{
+				timer += addTime;
+			}
+			
+			else
+			{
+				timer = .4f;
+			}
+			
+			addTime = 0f;
 		}
 	}
 	
@@ -105,7 +129,7 @@ public class GameplayManager : MonoBehaviour
 	
 	private void CountScore()
 	{
-		score = (60.4f - timer + ((maxballPos - minballPos) * 4)) * 2 + bonus;
+		score = (60.4f - timer) + bonus;
 		scoreText.text = score.ToString("#.");
 	}
 	

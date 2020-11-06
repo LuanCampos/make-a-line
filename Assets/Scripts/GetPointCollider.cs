@@ -15,7 +15,7 @@ public class GetPointCollider : MonoBehaviour
     {
 		if (col.gameObject.tag == "Ball")
 		{
-			// do something
+			gameplayManager.AddScore(15f);
 			Destroy(gameObject);
 		}
 		

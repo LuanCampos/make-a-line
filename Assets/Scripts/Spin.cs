@@ -11,7 +11,7 @@ public class Spin : MonoBehaviour
 	[SerializeField]
 	private float minScale = .7f;
 	[SerializeField]
-	private float maxScale = .9f;
+	private float maxScale = .85f;
 	
 	private bool gettingBigger;
 	

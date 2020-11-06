@@ -15,7 +15,7 @@ public class GetTimeCollider : MonoBehaviour
     {
 		if (col.gameObject.tag == "Ball")
 		{
-			// do something
+			gameplayManager.AddTime(10f);
 			Destroy(gameObject);
 		}
 		
