@@ -129,7 +129,8 @@ public class GameplayManager : MonoBehaviour
 	
 	private void CountScore()
 	{
-		score = (60.4f - timer) + bonus;
+		score += Time.deltaTime * 10f + bonus;
+		bonus = 0f;
 		scoreText.text = score.ToString("#.");
 	}
 	
