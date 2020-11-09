@@ -34,6 +34,7 @@ public class UIController : MonoBehaviour
 	{
 		GameObject.Find("Menu Panel").GetComponent<Animator>().Play("FadeOut");
 		GameObject.Find("Store Panel").GetComponent<Animator>().Play("FadeIn");
+		SelectIcon();
 	}
 	
 	public void BackToMenu()
@@ -117,6 +118,30 @@ public class UIController : MonoBehaviour
 			pausePanel.SetActive(false);
 			gameOverPanel.SetActive(false);
 		}
+	}
+	
+	private void SelectIcon()
+	{
+		if (GameManager.instance.linePrefab.name == "Line 3")
+		{
+			ShowSelectedIcon(3);
+		}
+		
+		else if (GameManager.instance.linePrefab.name == "Line 2")
+		{
+			ShowSelectedIcon(2);
+		}
+		
+		else if (GameManager.instance.linePrefab.name == "Line 1")
+		{
+			ShowSelectedIcon(1);
+		}
+		
+		else
+		{
+			ShowSelectedIcon(0);
+		}
+		
 	}
 	
 }
