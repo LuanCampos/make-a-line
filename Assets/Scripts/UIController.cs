@@ -55,8 +55,11 @@ public class UIController : MonoBehaviour
 	
 	public void Pause()
 	{
-		pausePanel.SetActive(true);
-		gameManager.SetIsTimeFreeze(true);
+		if (GameObject.Find("Initial Timer Text") == null)
+		{
+			pausePanel.SetActive(true);
+			gameManager.SetIsTimeFreeze(true);
+		}
 	}
 	
 	public void Continue()

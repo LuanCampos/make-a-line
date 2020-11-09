@@ -73,7 +73,12 @@ public class GameplayManager : MonoBehaviour
 		
 		if (timer < 5.5f)
 		{
-			FinalTimer();
+			FinalTimerOn();
+		}
+		
+		else
+		{
+			FinalTimerOff();
 		}
     }
 	
@@ -148,7 +153,7 @@ public class GameplayManager : MonoBehaviour
 		gameManager.SetIsTimeFreeze(false);
 	}
 	
-	private void FinalTimer()
+	private void FinalTimerOn()
 	{
 		if (!finalTimerText.active)
 		{
@@ -157,6 +162,14 @@ public class GameplayManager : MonoBehaviour
 		}
 		
 		finalTimerText.GetComponent<TextMeshProUGUI>().text = timer.ToString("#.");
+	}
+	
+	private void FinalTimerOff()
+	{
+		if (finalTimerText.active)
+		{
+			finalTimerText.SetActive(false);
+		}
 	}
 	
 }
