@@ -44,8 +44,20 @@ public class GameplayManager : MonoBehaviour
 	
 	void Start()
 	{
-		GameObject.Find("Gameplay Panel").GetComponent<Animator>().Play("FadeIn");
-		StartCoroutine(InitialTimer());
+		if (true) // lives >= 3
+		{
+			GameObject.Find("Gameplay Panel").GetComponent<Animator>().Play("FadeIn");
+			StartCoroutine(InitialTimer());
+		}
+		
+		else
+		{
+			Debug.Log("Show ad panel.");
+			// show ad panel
+			// if ad is played, lives += 3
+			// if disconected, show message and wait for "thanks" (lives += 1)
+			// panel with Play and Menu options (play 1 or 3 lives animation)
+		}
 	}
 	
 	void Update()
