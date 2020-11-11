@@ -97,8 +97,8 @@ LineRenderer:
       serializedVersion: 2
       key0: {r: 1, g: 1, b: 1, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
-      key2: {r: 0.2735849, g: 0, b: 0.2735849, a: 1}
-      key3: {r: 0, g: 1, b: 0, a: 0}
+      key2: {r: 1, g: 0, b: 0, a: 1}
+      key3: {r: 0, g: 0, b: 1, a: 0}
       key4: {r: 1, g: 0.48235294, b: 0, a: 0}
       key5: {r: 1, g: 0.48235294, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
@@ -106,7 +106,7 @@ LineRenderer:
       ctime0: 0
       ctime1: 65535
       ctime2: 65535
-      ctime3: 29491
+      ctime3: 65535
       ctime4: 42598
       ctime5: 65535
       ctime6: 0
