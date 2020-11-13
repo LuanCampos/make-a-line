@@ -28,11 +28,11 @@ public class UIController : MonoBehaviour
 		if (GameManager.instance != null)
 		{
 			gameManager = GameManager.instance;
-			
-			if (smallLifePanel.active)
-			{
-				ShowLives();
-			}
+		}
+		
+		if (smallLifePanel.activeSelf)
+		{
+			ShowLives();
 		}
 	}
 	
@@ -91,6 +91,7 @@ public class UIController : MonoBehaviour
 	
 	public void ShowNoLivesPanel()
 	{
+		adManager.StartAd();
 		noLivesPanel.SetActive(true);
 		bigLifePanel.GetComponent<Animator>().Play("ZeroLives");
 	}
@@ -108,14 +109,14 @@ public class UIController : MonoBehaviour
 		noConnectionPanel.SetActive(false);
 		weAreBackPanel.SetActive(true);
 		
-		if (gameManager.GetLives() == 3)
+		if (gameManager.GetLives() > 1)
 		{
-			bigLifePanel.GetComponent<Animator>().Play("ZeroToOne");
+			bigLifePanel.GetComponent<Animator>().Play("ZeroToThree");
 		}
 		
 		else
 		{
-			bigLifePanel.GetComponent<Animator>().Play("ZeroToThree");
+			bigLifePanel.GetComponent<Animator>().Play("ZeroToOne");
 		}
 	}
 	
@@ -133,7 +134,7 @@ public class UIController : MonoBehaviour
 	
 	public void GetLivesButton()
 	{
-		adManager.StartAd();
+		adManager.ShowAd();
 	}
 	
 	public void GetOneLifeButton()
@@ -182,7 +183,6 @@ public class UIController : MonoBehaviour
 	private void GetGameplayPanels()
 	{
 		smallLifePanel = GameObject.Find("Small Life Panel");
-		adManager = GameObject.Find("Player").GetComponent<AdManager>();
 		
 		if (GameObject.Find("Pause Panel") != null)
 		{
@@ -193,6 +193,7 @@ public class UIController : MonoBehaviour
 			noConnectionPanel = GameObject.Find("No Connection Panel");
 			weAreBackPanel = GameObject.Find("We Are Back Panel");
 			bigLifePanel = GameObject.Find("Big Life Panel");
+			adManager = GameObject.Find("Player").GetComponent<AdManager>();
 			finalScoreText = GameObject.Find("Final Score Text").GetComponent<TextMeshProUGUI>();
 			pausePanel.SetActive(false);
 			gameOverPanel.SetActive(false);

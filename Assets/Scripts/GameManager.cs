@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using GoogleMobileAds.Api;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -16,6 +17,11 @@ public class GameManager : MonoBehaviour
 	void Awake()
 	{
 		MakeSingleton();
+	}
+	
+	void Start()
+	{
+		MobileAds.Initialize(initStatus => { });
 	}
 	
 	void MakeSingleton()

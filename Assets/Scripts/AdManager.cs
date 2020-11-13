@@ -11,13 +11,22 @@ public class AdManager : MonoBehaviour
     private RewardedAd rewardedAd;
 	private UIController uiController;
 	private GameManager gameManager;
-
+	
     public void StartAd()
     {
 		gameManager = GameManager.instance;
 		uiController = GameObject.Find("UI Controller").GetComponent<UIController>();
 		
-        this.rewardedAd = new RewardedAd("ca-app-pub-2964040886574646/5411926434");
+		string adUnitId;
+        #if UNITY_ANDROID
+            adUnitId = "ca-app-pub-2964040886574646/5411926434";
+        #elif UNITY_IPHONE
+            adUnitId = "ca-app-pub-3940256099942544/1712485313";
+        #else
+            adUnitId = "unexpected_platform";
+        #endif
+
+        this.rewardedAd = new RewardedAd(adUnitId);
 		
 		// Called when an ad request has successfully loaded.
         this.rewardedAd.OnAdLoaded += HandleRewardedAdLoaded;
@@ -32,14 +41,22 @@ public class AdManager : MonoBehaviour
         // Called when the ad is closed.
         this.rewardedAd.OnAdClosed += HandleRewardedAdClosed;
 		
-		ShowAd();
+		LoadAd();
     }
 	
-	public void ShowAd()
+	public void LoadAd()
     {
         AdRequest request = new AdRequest.Builder().Build();
         this.rewardedAd.LoadAd(request);
     }
+	
+	public void ShowAd()
+	{
+		if (this.rewardedAd.IsLoaded())
+		{
+			this.rewardedAd.Show();
+		}
+	}
 	
 	public void HandleRewardedAdLoaded(object sender, EventArgs args)
     {
