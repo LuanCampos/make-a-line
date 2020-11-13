@@ -21,6 +21,7 @@ public class GameplayManager : MonoBehaviour
 	private GameObject finalTimerText;
 	private UIController uiController;
 	private GameManager gameManager;
+	private bool isGameOver = false;
 	
 	void Awake()
 	{
@@ -44,7 +45,7 @@ public class GameplayManager : MonoBehaviour
 	
 	void Start()
 	{
-		if (true) // lives >= 3
+		if (gameManager.GetLives() >= 1)
 		{
 			GameObject.Find("Gameplay Panel").GetComponent<Animator>().Play("FadeIn");
 			StartCoroutine(InitialTimer());
@@ -52,11 +53,11 @@ public class GameplayManager : MonoBehaviour
 		
 		else
 		{
-			Debug.Log("Show ad panel.");
-			// show ad panel
-			// if ad is played, lives += 3
-			// if disconected, show message and wait for "thanks" (lives += 1)
-			// panel with Play and Menu options (play 1 or 3 lives animation)
+			// no lives panel
+			GameObject.Find("Gameplay Panel").GetComponent<Animator>().Play("FadeOut");
+			uiController.ShowNoLivesPanel();
+			// ad or no connection panel
+			// we are back panel
 		}
 	}
 	
@@ -106,11 +107,13 @@ public class GameplayManager : MonoBehaviour
 	
 	private void CheckGameOver()
 	{
-		if (ball.position.y < -12 || timer <= 0.3f)
+		if ((ball.position.y < -12 || timer <= 0.3f) && !isGameOver)
 		{
 			gameManager.SetLastScore(Mathf.RoundToInt(score + .2f));
+			gameManager.SetLives(-1);
 			uiController.ShowGameOverPanel();
 			gameManager.SetIsTimeFreeze(true);
+			isGameOver = true;
 		}
 	}
 	

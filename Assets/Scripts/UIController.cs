@@ -9,6 +9,11 @@ public class UIController : MonoBehaviour
 	private GameObject pausePanel;
 	private GameObject gameOverPanel;
 	private GameObject gameplayPanel;
+	private GameObject smallLifePanel;
+	private GameObject noLivesPanel;
+	private GameObject noConnectionPanel;
+	private GameObject weAreBackPanel;
+	private GameObject bigLifePanel;
 	private GameManager gameManager;
 	private TextMeshProUGUI finalScoreText;
 	
@@ -22,6 +27,11 @@ public class UIController : MonoBehaviour
 		if (GameManager.instance != null)
 		{
 			gameManager = GameManager.instance;
+			
+			if (smallLifePanel.active)
+			{
+				ShowLives();
+			}
 		}
 	}
 	
@@ -73,8 +83,25 @@ public class UIController : MonoBehaviour
 	{
 		finalScoreText.text = gameManager.GetLastScore().ToString("");
 		gameOverPanel.SetActive(true);
+		ShowLives();
 		gameplayPanel.GetComponent<Animator>().Play("FadeOut");
 		gameOverPanel.GetComponent<Animator>().Play("FadeIn");
+	}
+	
+	public void ShowNoLivesPanel()
+	{
+		noLivesPanel.SetActive(true);
+		bigLifePanel.GetComponent<Animator>().Play("ZeroLives");
+	}
+	
+	public void ShowNoConnectionPanel()
+	{
+		noConnectionPanel.SetActive(true);
+	}
+	
+	public void ShowWeAreBackPanel()
+	{
+		weAreBackPanel.SetActive(true);
 	}
 	
 	public void PlayAgain()
@@ -87,6 +114,25 @@ public class UIController : MonoBehaviour
 		gameManager.SetIsTimeFreeze(false);
 		Time.timeScale = 1;
 		SceneManager.LoadScene("MainMenu");
+	}
+	
+	private void ShowLives()
+	{
+		switch (gameManager.GetLives())
+        {
+        case 3:
+            smallLifePanel.GetComponent<Animator>().Play("Idle3");
+            break;
+        case 2:
+            smallLifePanel.GetComponent<Animator>().Play("Idle2");
+            break;
+        case 1:
+            smallLifePanel.GetComponent<Animator>().Play("Idle1");
+            break;
+        default:
+            smallLifePanel.GetComponent<Animator>().Play("Idle0");
+            break;
+        }
 	}
 	
 	private void ShowSelectedIcon(int index)
@@ -109,15 +155,24 @@ public class UIController : MonoBehaviour
 	
 	private void GetGameplayPanels()
 	{
+		smallLifePanel = GameObject.Find("Small Life Panel");
+		
 		if (GameObject.Find("Pause Panel") != null)
 		{
 			pausePanel = GameObject.Find("Pause Panel");
 			gameOverPanel = GameObject.Find("Game Over Panel");
 			gameplayPanel = GameObject.Find("Gameplay Panel");
+			noLivesPanel = GameObject.Find("No Lives Panel");
+			noConnectionPanel = GameObject.Find("No Connection Panel");
+			weAreBackPanel = GameObject.Find("We Are Back Panel");
+			bigLifePanel = GameObject.Find("Big Life Panel");
 			finalScoreText = GameObject.Find("Final Score Text").GetComponent<TextMeshProUGUI>();
 			pausePanel.SetActive(false);
 			gameOverPanel.SetActive(false);
-		}
+			noLivesPanel.SetActive(false);
+			noConnectionPanel.SetActive(false);
+			weAreBackPanel.SetActive(false);
+		}	
 	}
 	
 	private void SelectIcon()
@@ -140,8 +195,7 @@ public class UIController : MonoBehaviour
 		else
 		{
 			ShowSelectedIcon(0);
-		}
-		
+		}	
 	}
 	
 }
