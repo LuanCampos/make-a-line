@@ -15,6 +15,7 @@ public class UIController : MonoBehaviour
 	private GameObject weAreBackPanel;
 	private GameObject bigLifePanel;
 	private GameManager gameManager;
+	private AdManager adManager;
 	private TextMeshProUGUI finalScoreText;
 	
 	void Awake()
@@ -96,12 +97,26 @@ public class UIController : MonoBehaviour
 	
 	public void ShowNoConnectionPanel()
 	{
+		noLivesPanel.SetActive(false);
+		bigLifePanel.GetComponent<Animator>().Play("Invisible");
 		noConnectionPanel.SetActive(true);
 	}
 	
 	public void ShowWeAreBackPanel()
 	{
+		noLivesPanel.SetActive(false);
+		noConnectionPanel.SetActive(false);
 		weAreBackPanel.SetActive(true);
+		
+		if (gameManager.GetLives() == 3)
+		{
+			bigLifePanel.GetComponent<Animator>().Play("ZeroToOne");
+		}
+		
+		else
+		{
+			bigLifePanel.GetComponent<Animator>().Play("ZeroToThree");
+		}
 	}
 	
 	public void PlayAgain()
@@ -118,13 +133,13 @@ public class UIController : MonoBehaviour
 	
 	public void GetLivesButton()
 	{
-		Debug.Log("Show Ad.");
-		// ad
+		adManager.StartAd();
 	}
 	
 	public void GetOneLifeButton()
 	{
-		// get one life
+		gameManager.SetLives(1);
+		ShowWeAreBackPanel();
 	}
 	
 	private void ShowLives()
@@ -167,6 +182,7 @@ public class UIController : MonoBehaviour
 	private void GetGameplayPanels()
 	{
 		smallLifePanel = GameObject.Find("Small Life Panel");
+		adManager = GameObject.Find("Player").GetComponent<AdManager>();
 		
 		if (GameObject.Find("Pause Panel") != null)
 		{

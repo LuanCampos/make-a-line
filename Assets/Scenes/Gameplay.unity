@@ -3859,6 +3859,7 @@ GameObject:
   - component: {fileID: 1247251505}
   - component: {fileID: 1247251506}
   - component: {fileID: 1247251507}
+  - component: {fileID: 1247251509}
   - component: {fileID: 1247251508}
   m_Layer: 0
   m_Name: Player
@@ -3935,6 +3936,18 @@ MonoBehaviour:
   getTime: {fileID: 3421271061769900754, guid: 65eb1be81c15a6949977baab6380783b, type: 3}
   loseTime: {fileID: 6168996420780895912, guid: 9dc867a7b5699fb4ea7a773ad384ca56,
     type: 3}
+--- !u!114 &1247251509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247251504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e436a32f23813499eba776526e5f01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1250123538
 GameObject:
   m_ObjectHideFlags: 0
