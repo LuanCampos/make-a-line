@@ -18,13 +18,8 @@ public class AdManager : MonoBehaviour
 		uiController = GameObject.Find("UI Controller").GetComponent<UIController>();
 		
 		string adUnitId;
-        #if UNITY_ANDROID
-            adUnitId = "ca-app-pub-2964040886574646/5411926434";
-        #elif UNITY_IPHONE
-            adUnitId = "ca-app-pub-3940256099942544/1712485313";
-        #else
-            adUnitId = "unexpected_platform";
-        #endif
+        //adUnitId = "ca-app-pub-2964040886574646/5411926434";
+		adUnitId = "ca-app-pub-3940256099942544/5224354917";
 
         this.rewardedAd = new RewardedAd(adUnitId);
 		
@@ -65,7 +60,7 @@ public class AdManager : MonoBehaviour
 
     public void HandleRewardedAdFailedToLoad(object sender, AdErrorEventArgs args)
     {
-        uiController.ShowNoConnectionPanel();
+        Debug.Log("HandleRewardedAdFailedToLoad event received with message: " + args.Message);
     }
 
     public void HandleRewardedAdOpening(object sender, EventArgs args)
@@ -75,7 +70,7 @@ public class AdManager : MonoBehaviour
 
     public void HandleRewardedAdFailedToShow(object sender, AdErrorEventArgs args)
     {
-        Debug.Log("HandleRewardedAdFailedToShow event received with message: " + args.Message);
+        uiController.ShowNoConnectionPanel();
     }
 
     public void HandleRewardedAdClosed(object sender, EventArgs args)
