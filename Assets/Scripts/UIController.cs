@@ -116,6 +116,17 @@ public class UIController : MonoBehaviour
 		SceneManager.LoadScene("MainMenu");
 	}
 	
+	public void GetLivesButton()
+	{
+		Debug.Log("Show Ad.");
+		// ad
+	}
+	
+	public void GetOneLifeButton()
+	{
+		// get one life
+	}
+	
 	private void ShowLives()
 	{
 		switch (gameManager.GetLives())
