@@ -8,11 +8,10 @@ public class GameManager : MonoBehaviour
 	public static GameManager instance;
 	public bool isTimeFreeze;
 	public int lastScore;
+	public int highScore;
 	public int lives;
 	public GameObject linePrefab;
-	
-	[SerializeField]
-	private GameObject[] lines;
+	public GameObject[] lines;
 	
 	void Awake()
 	{
@@ -76,6 +75,49 @@ public class GameManager : MonoBehaviour
 	public int GetLives()
 	{
 		return this.lives;
+	}
+	
+	public int GetIndexOfCurrentLine()
+	{
+		for (int i = 0; i < lines.Length; i++)
+		{
+			if(GameObject.ReferenceEquals(lines[i], linePrefab))
+			{
+				return i;
+			}
+		}
+		return 0;
+	}
+	
+	public void SetCurrentLineByIndex(int index)
+	{
+		linePrefab = lines[index];
+	}
+	
+	public void LoadGame()
+	{
+		if(ES3.KeyExists("highScore"))
+		{
+			this.highScore = ES3.Load<int>("highScore");
+		}
+		
+		if(ES3.KeyExists("lives"))
+		{
+			this.lives = ES3.Load<int>("lives");
+		}
+		
+		if(ES3.KeyExists("currentLine"))
+		{
+			SetCurrentLineByIndex(ES3.Load<int>("currentLine"));
+		}
+
+	}
+	
+	public void SaveGame()
+	{
+		ES3.Save("highScore", this.highScore);
+		ES3.Save("lives", this.lives);
+		ES3.Save("currentLine", GetIndexOfCurrentLine());
 	}
 	
 }
