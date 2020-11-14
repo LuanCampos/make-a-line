@@ -15,9 +15,11 @@ public class UIController : MonoBehaviour
 	private GameObject noConnectionPanel;
 	private GameObject weAreBackPanel;
 	private GameObject bigLifePanel;
+	private GameObject newHighScorePanel;
 	private GameManager gameManager;
 	private AdManager adManager;
 	private TextMeshProUGUI finalScoreText;
+	private TextMeshProUGUI highScoreText;
 	
 	void Awake()
 	{
@@ -34,6 +36,7 @@ public class UIController : MonoBehaviour
 		if (smallLifePanel.activeSelf)
 		{
 			ShowLives();
+			ShowHighScore();
 		}
 	}
 	
@@ -53,6 +56,7 @@ public class UIController : MonoBehaviour
 	{
 		GameObject.Find("Store Panel").GetComponent<Animator>().Play("FadeOut");
 		GameObject.Find("Menu Panel").GetComponent<Animator>().Play("FadeIn");
+		gameManager.SaveGame();
 	}
 	
 	public void SelectLine()
@@ -86,8 +90,16 @@ public class UIController : MonoBehaviour
 		finalScoreText.text = gameManager.GetLastScore().ToString("");
 		gameOverPanel.SetActive(true);
 		ShowLives();
+		ShowHighScore();
 		gameplayPanel.GetComponent<Animator>().Play("FadeOut");
 		gameOverPanel.GetComponent<Animator>().Play("FadeIn");
+		
+		if (gameManager.lastScore > gameManager.GetHighScore())
+		{
+			gameManager.SetHighScore();
+			newHighScorePanel.GetComponent<Animator>().Play("FadeIn");
+			gameManager.SaveGame();
+		}
 	}
 	
 	public void ShowNoLivesPanel()
@@ -164,6 +176,11 @@ public class UIController : MonoBehaviour
         }
 	}
 	
+	private void ShowHighScore()
+	{
+		highScoreText.text = gameManager.GetHighScore().ToString();
+	}
+	
 	private void ShowSelectedIcon(int index)
 	{
 		GameObject[] buttons = GameObject.FindGameObjectsWithTag("SelectLine");
@@ -185,6 +202,7 @@ public class UIController : MonoBehaviour
 	private void GetGameplayPanels()
 	{
 		smallLifePanel = GameObject.Find("Small Life Panel");
+		highScoreText = GameObject.Find("High Score").GetComponent<TextMeshProUGUI>();
 		
 		if (GameObject.Find("Pause Panel") != null)
 		{
@@ -195,6 +213,7 @@ public class UIController : MonoBehaviour
 			noConnectionPanel = GameObject.Find("No Connection Panel");
 			weAreBackPanel = GameObject.Find("We Are Back Panel");
 			bigLifePanel = GameObject.Find("Big Life Panel");
+			newHighScorePanel = GameObject.Find("New High Score Panel");
 			adManager = GameObject.Find("Player").GetComponent<AdManager>();
 			finalScoreText = GameObject.Find("Final Score Text").GetComponent<TextMeshProUGUI>();
 			pausePanel.SetActive(false);

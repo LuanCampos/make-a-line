@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
 	void Start()
 	{
 		MobileAds.Initialize(initStatus => { });
+		LoadGame();
 	}
 	
 	void MakeSingleton()
@@ -65,6 +66,16 @@ public class GameManager : MonoBehaviour
 	public int GetLastScore()
 	{
 		return this.lastScore;
+	}
+	
+	public void SetHighScore()
+	{
+		this.highScore = this.lastScore;
+	}
+	
+	public int GetHighScore()
+	{
+		return this.highScore;
 	}
 	
 	public void SetLives(int life)
