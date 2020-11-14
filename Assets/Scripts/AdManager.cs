@@ -13,6 +13,7 @@ public class AdManager : MonoBehaviour
 	private UIController uiController;
 	private GameManager gameManager;
 	private bool failedToLoad = false;
+	private bool buttonBool = true;
 	
     public void StartAd()
     {
@@ -20,8 +21,8 @@ public class AdManager : MonoBehaviour
 		uiController = GameObject.Find("UI Controller").GetComponent<UIController>();
 		
 		string adUnitId;
-        adUnitId = "ca-app-pub-2964040886574646/5411926434";
-		// For Test:	adUnitId = "ca-app-pub-3940256099942544/5224354917";
+        //adUnitId = "ca-app-pub-2964040886574646/5411926434";
+		adUnitId = "ca-app-pub-3940256099942544/5224354917";
 
         this.rewardedAd = new RewardedAd(adUnitId);
 		
@@ -49,32 +50,20 @@ public class AdManager : MonoBehaviour
 	
 	public void ShowAd()
 	{
-		if (failedToLoad)
+		while (buttonBool == true)
 		{
-			FailedToLoad();
-		}
+			if (failedToLoad)
+			{
+				buttonBool = false;
+				uiController.ShowNoConnectionPanel();
+			}
 		
-		if (this.rewardedAd.IsLoaded())
-		{
-			this.rewardedAd.Show();
+			if (this.rewardedAd.IsLoaded())
+			{
+				buttonBool = false;
+				this.rewardedAd.Show();
+			}
 		}
-		
-		else
-		{
-			StartCoroutine(ButtonWasPressed());
-		}
-	}
-	
-	IEnumerator ButtonWasPressed()
-	{
-		yield return new WaitForSeconds(.2f);
-		ShowAd();
-	}
-	
-	IEnumerator FailedToLoad()
-	{
-		yield return new WaitForSeconds(1f);
-		uiController.ShowNoConnectionPanel();
 	}
 	
 	public void HandleRewardedAdLoaded(object sender, EventArgs args)
@@ -96,6 +85,7 @@ public class AdManager : MonoBehaviour
     public void HandleRewardedAdFailedToShow(object sender, AdErrorEventArgs args)
     {
         MonoBehaviour.print("HandleRewardedAdFailedToShow event received with message: " + args.Message);
+		uiController.ShowNoConnectionPanel();
     }
 
     public void HandleRewardedAdClosed(object sender, EventArgs args)
