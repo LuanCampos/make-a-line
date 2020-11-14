@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using TMPro;
 
 public class UIController : MonoBehaviour
@@ -135,6 +136,7 @@ public class UIController : MonoBehaviour
 	public void GetLivesButton()
 	{
 		adManager.ShowAd();
+		GameObject.Find("Get Lives Button").GetComponent<Button>().interactable = false;
 	}
 	
 	public void GetOneLifeButton()

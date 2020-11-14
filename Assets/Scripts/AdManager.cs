@@ -39,8 +39,8 @@ public class AdManager : MonoBehaviour
 		uiController = GameObject.Find("UI Controller").GetComponent<UIController>();
 		
 		string adUnitId;
-        adUnitId = "ca-app-pub-2964040886574646/5411926434";
-		// adUnitId = "ca-app-pub-3940256099942544/5224354917"; //For Test
+        adUnitId = "ca-app-pub-2964040886574646/5411926434"; // Mine
+		// adUnitId = "ca-app-pub-3940256099942544/5224354917"; // For Test
 
         this.rewardedAd = new RewardedAd(adUnitId);
 		
