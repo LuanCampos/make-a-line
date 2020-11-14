@@ -98,8 +98,9 @@ public class UIController : MonoBehaviour
 		{
 			gameManager.SetHighScore();
 			newHighScorePanel.GetComponent<Animator>().Play("FadeIn");
-			gameManager.SaveGame();
 		}
+		
+		gameManager.SaveGame();
 	}
 	
 	public void ShowNoLivesPanel()
