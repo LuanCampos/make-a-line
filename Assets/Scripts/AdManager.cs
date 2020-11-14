@@ -13,7 +13,25 @@ public class AdManager : MonoBehaviour
 	private UIController uiController;
 	private GameManager gameManager;
 	private bool failedToLoad = false;
-	private bool buttonBool = true;
+	private bool showAdButton = false;
+	
+	void Update()
+	{
+		if (showAdButton == true)
+		{
+			if (failedToLoad)
+			{
+				showAdButton = false;
+				StartCoroutine(NoConnection());
+			}
+		
+			if (this.rewardedAd.IsLoaded())
+			{
+				showAdButton = false;
+				this.rewardedAd.Show();
+			}
+		}
+	}
 	
     public void StartAd()
     {
@@ -21,8 +39,8 @@ public class AdManager : MonoBehaviour
 		uiController = GameObject.Find("UI Controller").GetComponent<UIController>();
 		
 		string adUnitId;
-        //adUnitId = "ca-app-pub-2964040886574646/5411926434";
-		adUnitId = "ca-app-pub-3940256099942544/5224354917";
+        adUnitId = "ca-app-pub-2964040886574646/5411926434";
+		// adUnitId = "ca-app-pub-3940256099942544/5224354917"; //For Test
 
         this.rewardedAd = new RewardedAd(adUnitId);
 		
@@ -50,21 +68,14 @@ public class AdManager : MonoBehaviour
 	
 	public void ShowAd()
 	{
-		while (buttonBool == true)
-		{
-			if (failedToLoad)
-			{
-				buttonBool = false;
-				uiController.ShowNoConnectionPanel();
-			}
-		
-			if (this.rewardedAd.IsLoaded())
-			{
-				buttonBool = false;
-				this.rewardedAd.Show();
-			}
-		}
+		showAdButton = true;
 	}
+	
+	IEnumerator NoConnection()
+    {
+        yield return new WaitForSecondsRealtime(1f);
+        uiController.ShowNoConnectionPanel();
+    }
 	
 	public void HandleRewardedAdLoaded(object sender, EventArgs args)
     {
