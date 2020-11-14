@@ -119,6 +119,7 @@ public class UIController : MonoBehaviour
 	
 	public void ShowWeAreBackPanel()
 	{
+		gameManager.SaveGame();
 		noLivesPanel.SetActive(false);
 		noConnectionPanel.SetActive(false);
 		weAreBackPanel.SetActive(true);
@@ -227,17 +228,17 @@ public class UIController : MonoBehaviour
 	
 	private void SelectIcon()
 	{
-		if (GameManager.instance.linePrefab.name == "Line 3")
+		if (gameManager.linePrefab.name == "Line 3")
 		{
 			ShowSelectedIcon(3);
 		}
 		
-		else if (GameManager.instance.linePrefab.name == "Line 2")
+		else if (gameManager.linePrefab.name == "Line 2")
 		{
 			ShowSelectedIcon(2);
 		}
 		
-		else if (GameManager.instance.linePrefab.name == "Line 1")
+		else if (gameManager.linePrefab.name == "Line 1")
 		{
 			ShowSelectedIcon(1);
 		}
