@@ -23,17 +23,7 @@ public class AdManager : MonoBehaviour
 
         this.rewardedAd = new RewardedAd(adUnitId);
 		
-		// Called when an ad request has successfully loaded.
         this.rewardedAd.OnAdLoaded += HandleRewardedAdLoaded;
-        // Called when an ad request failed to load.
-        this.rewardedAd.OnAdFailedToLoad += HandleRewardedAdFailedToLoad;
-        // Called when an ad is shown.
-        this.rewardedAd.OnAdOpening += HandleRewardedAdOpening;
-        // Called when an ad request failed to show.
-        this.rewardedAd.OnAdFailedToShow += HandleRewardedAdFailedToShow;
-        // Called when the user should be rewarded for interacting with the ad.
-        this.rewardedAd.OnUserEarnedReward += HandleUserEarnedReward;
-        // Called when the ad is closed.
         this.rewardedAd.OnAdClosed += HandleRewardedAdClosed;
 		
 		LoadAd();
@@ -51,6 +41,24 @@ public class AdManager : MonoBehaviour
 		{
 			this.rewardedAd.Show();
 		}
+		
+		else
+		{
+			uiController.ShowAdTryAgain();
+		}
+	}
+	
+	public void ShowAdTryAgain()
+	{
+		if (this.rewardedAd.IsLoaded())
+		{
+			this.rewardedAd.Show();
+		}
+		
+		else
+		{
+			uiController.ShowNoConnectionPanel();
+		}
 	}
 	
 	public void HandleRewardedAdLoaded(object sender, EventArgs args)
@@ -58,33 +66,11 @@ public class AdManager : MonoBehaviour
         Debug.Log("HandleRewardedAdLoaded event received");
     }
 
-    public void HandleRewardedAdFailedToLoad(object sender, AdErrorEventArgs args)
-    {
-        Debug.Log("HandleRewardedAdFailedToLoad event received with message: " + args.Message);
-    }
-
-    public void HandleRewardedAdOpening(object sender, EventArgs args)
-    {
-        Debug.Log("HandleRewardedAdOpening event received");
-    }
-
-    public void HandleRewardedAdFailedToShow(object sender, AdErrorEventArgs args)
-    {
-        uiController.ShowNoConnectionPanel();
-    }
-
     public void HandleRewardedAdClosed(object sender, EventArgs args)
     {
         Debug.Log("HandleRewardedAdClosed event received");
 		gameManager.SetLives(3);
 		uiController.ShowWeAreBackPanel();
-    }
-
-    public void HandleUserEarnedReward(object sender, Reward args)
-    {
-        string type = args.Type;
-        double amount = args.Amount;
-        Debug.Log("HandleRewardedAdRewarded event received for " + amount.ToString() + " " + type);
     }
 	
 }
