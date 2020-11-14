@@ -143,17 +143,6 @@ public class UIController : MonoBehaviour
 		ShowWeAreBackPanel();
 	}
 	
-	public void ShowAdTryAgain()
-	{
-		StartCoroutine(WaitToShowAd());
-	}
-	
-	IEnumerator WaitToShowAd()
-	{
-		yield return new WaitForSeconds(2);
-		adManager.ShowAdTryAgain();
-	}
-	
 	private void ShowLives()
 	{
 		switch (gameManager.GetLives())
