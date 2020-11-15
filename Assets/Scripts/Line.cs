@@ -37,6 +37,7 @@ public class Line : MonoBehaviour
 
 		lineRenderer.positionCount = 3;
 		UpdateLineRenderer();
+		UpdateEdgeCol();
 	}
 	
 	private void SetPoints (Vector2 mousePos)
