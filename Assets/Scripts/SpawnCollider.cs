@@ -61,7 +61,7 @@ public class SpawnCollider : MonoBehaviour
 			
 			else
 			{
-				SpawnCollectables(Random.Range(1,4), new Vector3(positionX + Random.Range(10f, 20f) * scale, Random.Range(-2.7f, 2.7f), 0));
+				SpawnCollectables(Random.Range(1,3), new Vector3(positionX + Random.Range(10f, 20f) * scale, Random.Range(-2.7f, 2.7f), 0));
 			}
 		}
 		
