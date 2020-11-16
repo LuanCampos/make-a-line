@@ -45,7 +45,14 @@ public class Line : MonoBehaviour
 	private void SetPoints (Vector2 mousePos)
 	{
 		Vector2 maxPoint = GetMaxPoint(mousePos);
-		maxPoint = BallIsBetweenPoints(maxPoint);		
+		Vector2 ballIsBetweenPoints = BallIsBetweenPoints(maxPoint);
+		
+		while (maxPoint != ballIsBetweenPoints)
+		{
+			maxPoint = ballIsBetweenPoints;
+			ballIsBetweenPoints = BallIsBetweenPoints(maxPoint);
+		}
+		
 		SetMaxPoint(maxPoint);
 		SetMiddlePoint(maxPoint);
 		UpdateLineRenderer();
@@ -107,9 +114,9 @@ public class Line : MonoBehaviour
 				float oldLineYInBallX = oldLineY / oldLineX * ballX;
 				float newLineYInBallX = newLineY / newLineX * ballX;
 				
-				if ((oldLineYInBallX < ballY && newLineYInBallX > ballY) || (oldLineYInBallX > ballY && newLineYInBallX < ballY))
+				if ((oldLineYInBallX < ballY - .2f && newLineYInBallX > ballY - .2f) || (oldLineYInBallX > ballY + .2f && newLineYInBallX < ballY + .2f))
 				{
-					return (new Vector2(ball.position.x, ball.position.y - .2f) - points[0]).normalized * 6f; //Vector2.Distance(points[0], points[2]);
+					return new Vector2((points[2].x + mousePos.x) / 2, (points[2].y + mousePos.y) / 2);
 				}
 			}
 
