@@ -45,12 +45,7 @@ public class Line : MonoBehaviour
 	private void SetPoints (Vector2 mousePos)
 	{
 		Vector2 maxPoint = GetMaxPoint(mousePos);
-		
-		if (BallIsBetweenPoints(maxPoint))
-		{
-			Debug.Log("Ball is between points!");
-		}
-		
+		maxPoint = BallIsBetweenPoints(maxPoint);		
 		SetMaxPoint(maxPoint);
 		SetMiddlePoint(maxPoint);
 		UpdateLineRenderer();
@@ -92,7 +87,7 @@ public class Line : MonoBehaviour
 		edgeCol.points = points.ToArray();
 	}
 	
-	private bool BallIsBetweenPoints(Vector2 mousePos)
+	private Vector2 BallIsBetweenPoints(Vector2 mousePos)
 	{
 		float ballX = ball.position.x - points[0].x;
 		float ballY = ball.position.y - points[0].y;
@@ -103,9 +98,9 @@ public class Line : MonoBehaviour
 		
 		if (newLineX != oldLineX || newLineY != oldLineY)
 		{
-			float ballLineLength = Mathf.Sqrt(ballX*ballX + ballY*ballY);
-			float oldLineLength = Mathf.Sqrt(oldLineX*oldLineX + oldLineY*oldLineY);
-			float newLineLength = Mathf.Sqrt(newLineX*newLineX + newLineY*newLineY);
+			float ballLineLength = Mathf.Sqrt(ballX * ballX + ballY * ballY);
+			float oldLineLength = Mathf.Sqrt(oldLineX * oldLineX + oldLineY * oldLineY);
+			float newLineLength = Mathf.Sqrt(newLineX * newLineX + newLineY * newLineY);
 			
 			if (ballLineLength < oldLineLength)
 			{
@@ -114,12 +109,12 @@ public class Line : MonoBehaviour
 				
 				if ((oldLineYInBallX < ballY && newLineYInBallX > ballY) || (oldLineYInBallX > ballY && newLineYInBallX < ballY))
 				{
-					return true;
+					return (new Vector2(ball.position.x, ball.position.y - .2f) - points[0]).normalized * 6f; //Vector2.Distance(points[0], points[2]);
 				}
 			}
 
 		}
-		return false;
+		return mousePos;
 	}
 	
 }
