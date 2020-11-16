@@ -8,11 +8,13 @@ public class Line : MonoBehaviour
 	private EdgeCollider2D edgeCol;
 	private List <Vector2> points;
 	private float lineSize = 6f;
+	private Transform ball;
 	
 	void Awake()
 	{
 		lineRenderer = GetComponent<LineRenderer>();
 		edgeCol = GetComponent<EdgeCollider2D>();
+		ball = GameObject.Find("Ball").transform;
 	}
 	
 	public void UpdateLine (Vector2 mousePos)
@@ -43,6 +45,12 @@ public class Line : MonoBehaviour
 	private void SetPoints (Vector2 mousePos)
 	{
 		Vector2 maxPoint = GetMaxPoint(mousePos);
+		
+		if (BallIsBetweenPoints(maxPoint))
+		{
+			Debug.Log("Ball is between points!");
+		}
+		
 		SetMaxPoint(maxPoint);
 		SetMiddlePoint(maxPoint);
 		UpdateLineRenderer();
@@ -82,6 +90,36 @@ public class Line : MonoBehaviour
 	private void UpdateEdgeCol()
 	{
 		edgeCol.points = points.ToArray();
+	}
+	
+	private bool BallIsBetweenPoints(Vector2 mousePos)
+	{
+		float ballX = ball.position.x - points[0].x;
+		float ballY = ball.position.y - points[0].y;
+		float oldLineX = points[2].x - points[0].x;
+		float oldLineY = points[2].y - points[0].y;
+		float newLineX = mousePos.x - points[0].x;
+		float newLineY = mousePos.y - points[0].y;
+		
+		if (newLineX != oldLineX || newLineY != oldLineY)
+		{
+			float ballLineLength = Mathf.Sqrt(ballX*ballX + ballY*ballY);
+			float oldLineLength = Mathf.Sqrt(oldLineX*oldLineX + oldLineY*oldLineY);
+			float newLineLength = Mathf.Sqrt(newLineX*newLineX + newLineY*newLineY);
+			
+			if (ballLineLength < oldLineLength)
+			{
+				float oldLineYInBallX = oldLineY / oldLineX * ballX;
+				float newLineYInBallX = newLineY / newLineX * ballX;
+				
+				if ((oldLineYInBallX < ballY && newLineYInBallX > ballY) || (oldLineYInBallX > ballY && newLineYInBallX < ballY))
+				{
+					return true;
+				}
+			}
+
+		}
+		return false;
 	}
 	
 }
