@@ -119,7 +119,6 @@ public class AdManager : MonoBehaviour
         double amount = 3;
         MonoBehaviour.print("HandleRewardedAdRewarded event received for " + amount.ToString() + " " + type);
 		gameManager.SetLives(2);
-		uiController.ShowWeAreBackPanel();
     }
 	
 }
