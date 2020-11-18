@@ -98,6 +98,7 @@ public class AdManager : MonoBehaviour
     public void HandleRewardedAdOpening(object sender, EventArgs args)
     {
         MonoBehaviour.print("HandleRewardedAdOpening event received");
+		gameManager.SetLives(1);
     }
 
     public void HandleRewardedAdFailedToShow(object sender, AdErrorEventArgs args)
@@ -109,7 +110,6 @@ public class AdManager : MonoBehaviour
     public void HandleRewardedAdClosed(object sender, EventArgs args)
     {
         Debug.Log("HandleRewardedAdClosed event received");
-		gameManager.SetLives(1);
 		uiController.ShowWeAreBackPanel();
     }
 

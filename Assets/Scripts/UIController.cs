@@ -124,16 +124,7 @@ public class UIController : MonoBehaviour
 		noLivesPanel.SetActive(false);
 		noConnectionPanel.SetActive(false);
 		weAreBackPanel.SetActive(true);
-		
-		if (gameManager.GetLives() > 1)
-		{
-			bigLifePanel.GetComponent<Animator>().Play("ZeroToThree");
-		}
-		
-		else
-		{
-			bigLifePanel.GetComponent<Animator>().Play("ZeroToOne");
-		}
+		StartCoroutine(ShowLivesAnimation());
 	}
 	
 	public void PlayAgain()
@@ -179,7 +170,7 @@ public class UIController : MonoBehaviour
 	}
 	
 	private void ShowLives()
-	{
+	{	
 		switch (gameManager.GetLives())
         {
         case 3:
@@ -195,6 +186,21 @@ public class UIController : MonoBehaviour
             smallLifePanel.GetComponent<Animator>().Play("Idle0");
             break;
         }
+	}
+	
+	private IEnumerator ShowLivesAnimation()
+	{
+		yield return new WaitForEndOfFrame();
+		
+		if (gameManager.GetLives() > 1)
+		{
+			bigLifePanel.GetComponent<Animator>().Play("ZeroToThree");
+		}
+		
+		else
+		{
+			bigLifePanel.GetComponent<Animator>().Play("ZeroToOne");
+		}
 	}
 	
 	private void ShowHighScore()

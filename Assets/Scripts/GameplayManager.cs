@@ -53,11 +53,8 @@ public class GameplayManager : MonoBehaviour
 		
 		else
 		{
-			// no lives panel
 			GameObject.Find("Gameplay Panel").GetComponent<Animator>().Play("FadeOut");
 			uiController.ShowNoLivesPanel();
-			// ad or no connection panel
-			// we are back panel
 		}
 	}
 	
@@ -176,7 +173,7 @@ public class GameplayManager : MonoBehaviour
 	
 	private void FinalTimerOn()
 	{
-		if (!finalTimerText.active)
+		if (!finalTimerText.activeSelf)
 		{
 			finalTimerText.SetActive(true);
 			GameObject.Find("Gameplay Panel").GetComponent<Animator>().Play("TimerFadeIn");
@@ -187,7 +184,7 @@ public class GameplayManager : MonoBehaviour
 	
 	private void FinalTimerOff()
 	{
-		if (finalTimerText.active)
+		if (finalTimerText.activeSelf)
 		{
 			finalTimerText.SetActive(false);
 		}
