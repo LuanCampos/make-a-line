@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class SpawnCollider : MonoBehaviour
 {
-	[SerializeField]
-	private GameObject spawnColliderPreset;
+	public GameObject spawnColliderPreset;
 	
     private SpawnManager spawnManager;
 	private float scale;
