@@ -40,11 +40,11 @@ public class AdManager : MonoBehaviour
 		
 		string adUnitId;
         #if UNITY_ANDROID
-            adUnitId = "ca-app-pub-2964040886574646/5411926434"; // Mine
-			// adUnitId = "ca-app-pub-3940256099942544/5224354917"; // Test
+            // adUnitId = "ca-app-pub-2964040886574646/5411926434"; // Mine
+			adUnitId = "ca-app-pub-3940256099942544/5224354917"; // Test
         #elif UNITY_IPHONE
-            adUnitId = "ca-app-pub-2964040886574646/4767415837"; // Mine
-			// adUnitId = "ca-app-pub-3940256099942544/1712485313"; // Test
+            // adUnitId = "ca-app-pub-2964040886574646/4767415837"; // Mine
+			adUnitId = "ca-app-pub-3940256099942544/1712485313"; // Test
         #else
             adUnitId = "unexpected_platform";
         #endif

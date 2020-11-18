@@ -32,8 +32,10 @@ MonoBehaviour:
     - Assembly-CSharp-firstpass
     - GoogleMobileAds
     - Assembly-CSharp
+    - NativeShare.Runtime
     - PsdPlugin
     - GoogleMobileAds.Editor
+    - NativeShare.Editor
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1

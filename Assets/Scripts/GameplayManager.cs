@@ -109,11 +109,7 @@ public class GameplayManager : MonoBehaviour
 	{
 		if ((ball.position.y < -12 || timer <= 0.3f) && !isGameOver)
 		{
-			gameManager.SetLastScore(Mathf.RoundToInt(score + .2f));
-			gameManager.SetLives(-1);
-			uiController.ShowGameOverPanel();
-			gameManager.SetIsTimeFreeze(true);
-			isGameOver = true;
+			StartCoroutine(TheGameIsOver());
 		}
 	}
 	
@@ -154,7 +150,7 @@ public class GameplayManager : MonoBehaviour
 		scoreText.text = score.ToString("#.");
 	}
 	
-	IEnumerator InitialTimer()
+	private IEnumerator InitialTimer()
 	{
 		initialTimerText.SetActive(true);
 		
@@ -166,6 +162,16 @@ public class GameplayManager : MonoBehaviour
 		
 		initialTimerText.SetActive(false);
 		gameManager.SetIsTimeFreeze(false);
+	}
+	
+	private IEnumerator TheGameIsOver()
+	{
+		yield return new WaitForEndOfFrame();
+		gameManager.SetLastScore(Mathf.RoundToInt(score));
+		gameManager.SetLives(-1);
+		uiController.ShowGameOverPanel();
+		gameManager.SetIsTimeFreeze(true);
+		isGameOver = true;
 	}
 	
 	private void FinalTimerOn()
