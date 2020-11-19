@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 	public bool isTimeFreeze;
 	public int lastScore;
 	public int highScore;
+	public int totalScore;
 	public int lives;
 	public GameObject linePrefab;
 	public GameObject[] lines;
@@ -61,6 +62,7 @@ public class GameManager : MonoBehaviour
 	public void SetLastScore(int score)
 	{
 		this.lastScore = score;
+		this.totalScore += score;
 	}
 	
 	public int GetLastScore()
@@ -112,6 +114,11 @@ public class GameManager : MonoBehaviour
 			this.highScore = ES3.Load<int>("highScore");
 		}
 		
+		if(ES3.KeyExists("totalScore"))
+		{
+			this.totalScore = ES3.Load<int>("totalScore");
+		}
+		
 		if(ES3.KeyExists("lives"))
 		{
 			this.lives = ES3.Load<int>("lives");
@@ -127,6 +134,7 @@ public class GameManager : MonoBehaviour
 	public void SaveGame()
 	{
 		ES3.Save("highScore", this.highScore);
+		ES3.Save("totalScore", this.totalScore);
 		ES3.Save("lives", this.lives);
 		ES3.Save("currentLine", GetIndexOfCurrentLine());
 	}

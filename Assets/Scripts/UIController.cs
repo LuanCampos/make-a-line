@@ -48,9 +48,10 @@ public class UIController : MonoBehaviour
 	
 	public void Store()
 	{
+		SelectIcon();
 		GameObject.Find("Menu Panel").GetComponent<Animator>().Play("FadeOut");
 		GameObject.Find("Store Panel").GetComponent<Animator>().Play("FadeIn");
-		SelectIcon();
+		//Scrollbar scrollbar = GameObject.Find("Scrollbar Horizontal").GetComponent<Scrollbar>();
 	}
 	
 	public void BackToMenu()

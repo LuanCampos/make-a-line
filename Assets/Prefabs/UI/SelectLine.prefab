@@ -168,8 +168,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 3321160373259802106}
   - component: {fileID: 4007234535934536998}
   - component: {fileID: 5872699539340932114}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Line Color
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,7 +388,7 @@ RectTransform:
   - {fileID: 1782529031739712026}
   - {fileID: 5801744322244230392}
   m_Father: {fileID: 5196125532267756708}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -426,8 +426,8 @@ RectTransform:
   m_Children:
   - {fileID: 8317038522982081875}
   - {fileID: 3321160373259802106}
-  - {fileID: 2234585621823941342}
   - {fileID: 1015241659642334621}
+  - {fileID: 2234585621823941342}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -528,7 +528,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5196125532267756708}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
