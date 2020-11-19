@@ -49,9 +49,11 @@ public class UIController : MonoBehaviour
 	public void Store()
 	{
 		SelectIcon();
+		SelectLockers();
+		GameObject.Find("Store High Score").GetComponent<TextMeshProUGUI>().text = gameManager.GetHighScore().ToString();
+		GameObject.Find("Total Score").GetComponent<TextMeshProUGUI>().text = gameManager.GetTotalScore().ToString();
 		GameObject.Find("Menu Panel").GetComponent<Animator>().Play("FadeOut");
 		GameObject.Find("Store Panel").GetComponent<Animator>().Play("FadeIn");
-		//Scrollbar scrollbar = GameObject.Find("Scrollbar Horizontal").GetComponent<Scrollbar>();
 	}
 	
 	public void BackToMenu()
@@ -273,6 +275,54 @@ public class UIController : MonoBehaviour
 		{
 			ShowSelectedIcon(0);
 		}	
+	}
+	
+	private void SelectLockers()
+	{
+		GameObject[] buttons = GameObject.FindGameObjectsWithTag("SelectLine");
+		
+		for (int i = 0; i < buttons.Length; i++)
+		{
+			switch (i)
+			{
+				case 7:
+					HideLockerOrNot(2, 1000000, buttons[i]);
+					break;
+				case 6:
+					HideLockerOrNot(1, 7000, buttons[i]);
+					break;
+				case 5:
+					HideLockerOrNot(2, 100000, buttons[i]);
+					break;
+				case 4:
+					HideLockerOrNot(1, 5000, buttons[i]);
+					break;
+				case 3:
+					HideLockerOrNot(2, 30000, buttons[i]);
+					break;
+				case 2:
+					HideLockerOrNot(1, 3000, buttons[i]);
+					break;
+				case 1:
+					HideLockerOrNot(1, 500, buttons[i]);
+					break;
+				default:
+					break;
+			}
+		}
+	}
+	
+	private void HideLockerOrNot(int option, int score, GameObject button)
+	{
+		if ((option == 1 && score <= gameManager.GetHighScore()) || (option == 2 && score <= gameManager.GetTotalScore()))
+		{
+			button.transform.GetChild(2).gameObject.SetActive(false);
+		}
+		
+		else
+		{
+			button.GetComponent<Button>().interactable = false;
+		}
 	}
 	
 }

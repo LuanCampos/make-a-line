@@ -80,6 +80,11 @@ public class GameManager : MonoBehaviour
 		return this.highScore;
 	}
 	
+	public int GetTotalScore()
+	{
+		return this.totalScore;
+	}
+	
 	public void SetLives(int life)
 	{
 		this.lives += life;
