@@ -18,8 +18,8 @@ public class CameraFollow : MonoBehaviour
 	void LateUpdate()
     {
 		ballPos = ball.position.x;
-		LerpCamera();
 		CameraShake();
+		LerpCamera();
     }
 
 	private void LerpCamera()
@@ -62,16 +62,16 @@ public class CameraFollow : MonoBehaviour
 			switch (cameraShake)
 			{
 				case 9:
-					transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 2), .5f);
+					transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 3), .5f);
 					break;
 				case 7:
-					transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, -2), .5f);
+					transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, -3), .5f);
 					break;
 				case 5:
-					transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 1), .5f);
+					transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 3), .5f);
 					break;
 				case 3:
-					transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, -1), .5f);
+					transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, -3), .5f);
 					break;
 				case 1:
 					transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 0), .5f);

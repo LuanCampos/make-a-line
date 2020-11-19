@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5564917490379767132}
   m_Layer: 0
   m_Name: GetTime
-  m_TagString: Untagged
+  m_TagString: GetTime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

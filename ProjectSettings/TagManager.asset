@@ -7,6 +7,9 @@ TagManager:
   - Line
   - SelectLine
   - Ball
+  - GetPoint
+  - GetTime
+  - LoseTime
   layers:
   - Default
   - TransparentFX
