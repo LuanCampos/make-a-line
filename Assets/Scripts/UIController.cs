@@ -48,8 +48,8 @@ public class UIController : MonoBehaviour
 	
 	public void Store()
 	{
-		SelectIcon();
 		SelectLockers();
+		SelectIcon();
 		GameObject.Find("Store High Score").GetComponent<TextMeshProUGUI>().text = gameManager.GetHighScore().ToString();
 		GameObject.Find("Total Score").GetComponent<TextMeshProUGUI>().text = gameManager.GetTotalScore().ToString();
 		GameObject.Find("Menu Panel").GetComponent<Animator>().Play("FadeOut");
@@ -283,7 +283,7 @@ public class UIController : MonoBehaviour
 		
 		for (int i = 0; i < buttons.Length; i++)
 		{
-			switch (i)
+			switch (int.Parse(buttons[i].name))
 			{
 				case 7:
 					HideLockerOrNot(2, 1000000, buttons[i]);
