@@ -3521,7 +3521,7 @@ PrefabInstance:
       propertyPath: m_text
       value: 'High Score
 
-        > 500'
+        > 1000'
       objectReference: {fileID: 0}
     - target: {fileID: 7566350044829953892, guid: 302785314b89678449ce5cc44761fc11,
         type: 3}

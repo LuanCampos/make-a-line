@@ -304,7 +304,7 @@ public class UIController : MonoBehaviour
 					HideLockerOrNot(1, 3000, buttons[i]);
 					break;
 				case 1:
-					HideLockerOrNot(1, 500, buttons[i]);
+					HideLockerOrNot(1, 1000, buttons[i]);
 					break;
 				default:
 					break;

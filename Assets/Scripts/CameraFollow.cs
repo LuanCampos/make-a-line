@@ -53,4 +53,9 @@ public class CameraFollow : MonoBehaviour
 		transform.position = Vector3.Lerp(transform.position, new Vector3(ballPos + 2.5f, 0f, -10f), vel * Time.deltaTime);
 	}
 	
+	public void ShakeCamera()
+	{
+		Debug.Log("Shake Camera.");
+	}
+	
 }
