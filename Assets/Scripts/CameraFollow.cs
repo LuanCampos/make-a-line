@@ -8,6 +8,7 @@ public class CameraFollow : MonoBehaviour
 	private float ballPos;
 	private float maxDistance = 2f;
 	private bool lerpingFast = false;
+	private int cameraShake;
 	
     void Start()
     {
@@ -18,6 +19,7 @@ public class CameraFollow : MonoBehaviour
     {
 		ballPos = ball.position.x;
 		LerpCamera();
+		CameraShake();
     }
 
 	private void LerpCamera()
@@ -53,9 +55,35 @@ public class CameraFollow : MonoBehaviour
 		transform.position = Vector3.Lerp(transform.position, new Vector3(ballPos + 2.5f, 0f, -10f), vel * Time.deltaTime);
 	}
 	
+	public void CameraShake()
+	{
+		if (cameraShake > 0)
+		{
+			switch (cameraShake)
+			{
+				case 9:
+					transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 2), .5f);
+					break;
+				case 7:
+					transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, -2), .5f);
+					break;
+				case 5:
+					transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 1), .5f);
+					break;
+				case 3:
+					transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, -1), .5f);
+					break;
+				case 1:
+					transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 0), .5f);
+					break;
+			}
+			cameraShake --;
+		}
+	}
+	
 	public void ShakeCamera()
 	{
-		Debug.Log("Shake Camera.");
+		cameraShake = 9;
 	}
 	
 }
