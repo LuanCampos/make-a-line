@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using TMPro;
 
 public class UIController : MonoBehaviour
-{
+{	
 	private GameObject pausePanel;
 	private GameObject gameOverPanel;
 	private GameObject gameplayPanel;
@@ -17,10 +17,13 @@ public class UIController : MonoBehaviour
 	private GameObject weAreBackPanel;
 	private GameObject bigLifePanel;
 	private GameObject newHighScorePanel;
+	private GameObject newLinePanel;
 	private GameManager gameManager;
 	private AdManager adManager;
 	private TextMeshProUGUI finalScoreText;
 	private TextMeshProUGUI highScoreText;
+	private int lastHighScore;
+	private int nextCheckIndex;
 	
 	void Awake()
 	{
@@ -97,14 +100,16 @@ public class UIController : MonoBehaviour
 		ShowHighScore();
 		gameplayPanel.GetComponent<Animator>().Play("FadeOut");
 		gameOverPanel.GetComponent<Animator>().Play("FadeIn");
+		lastHighScore = gameManager.GetHighScore();
 		
-		if (gameManager.lastScore > gameManager.GetHighScore())
+		if (gameManager.lastScore > lastHighScore)
 		{
 			gameManager.SetHighScore();
 			newHighScorePanel.GetComponent<Animator>().Play("FadeIn");
 		}
 		
 		gameManager.SaveGame();
+		CheckIfUnlockNewLine(1);
 	}
 	
 	public void ShowNoLivesPanel()
@@ -140,6 +145,21 @@ public class UIController : MonoBehaviour
 		gameManager.SetIsTimeFreeze(false);
 		Time.timeScale = 1;
 		SceneManager.LoadScene("MainMenu");
+	}
+	
+	public void BackToGameOverPanel()
+	{
+		newLinePanel.SetActive(false);
+		gameOverPanel.SetActive(true);
+		ShowLives();
+		gameOverPanel.GetComponent<Animator>().Play("FadeIn");
+		
+		if (gameManager.lastScore == gameManager.GetHighScore())
+		{
+			newHighScorePanel.GetComponent<Animator>().Play("FadeIn");
+		}
+		
+		CheckIfUnlockNewLine(nextCheckIndex);
 	}
 	
 	public void SharePrint()
@@ -244,10 +264,12 @@ public class UIController : MonoBehaviour
 			weAreBackPanel = GameObject.Find("We Are Back Panel");
 			bigLifePanel = GameObject.Find("Big Life Panel");
 			newHighScorePanel = GameObject.Find("New High Score Panel");
+			newLinePanel = GameObject.Find("New Line Panel");
 			adManager = GameObject.Find("Player").GetComponent<AdManager>();
 			finalScoreText = GameObject.Find("Final Score Text").GetComponent<TextMeshProUGUI>();
 			pausePanel.SetActive(false);
 			gameOverPanel.SetActive(false);
+			newLinePanel.SetActive(false);
 			noLivesPanel.SetActive(false);
 			noConnectionPanel.SetActive(false);
 			weAreBackPanel.SetActive(false);
@@ -311,6 +333,112 @@ public class UIController : MonoBehaviour
 		{
 			button.GetComponent<Button>().interactable = false;
 		}
+	}
+	
+	private void CheckIfUnlockNewLine(int index)
+	{
+		switch(index)
+        {
+        case 1:
+            if (gameManager.GetHighScore() >= 1000 && lastHighScore < 1000)
+			{
+				ShowNewLinePanel(1);
+				nextCheckIndex = 2;
+			}
+			else
+			{
+				CheckIfUnlockNewLine(2);
+			}
+            break;
+        case 2:
+            if (gameManager.GetHighScore() >= 3000 && lastHighScore < 3000)
+			{
+				ShowNewLinePanel(2);
+				nextCheckIndex = 3;
+			}
+			else
+			{
+				CheckIfUnlockNewLine(3);
+			}
+            break;
+        case 3:
+            if (gameManager.GetTotalScore() >= 30000 && gameManager.GetTotalScore() - lastHighScore < 30000)
+			{
+				ShowNewLinePanel(3);
+				nextCheckIndex = 4;
+			}
+			else
+			{
+				CheckIfUnlockNewLine(4);
+			}
+            break;
+		case 4:
+            if (gameManager.GetHighScore() >= 5000 && lastHighScore < 5000)
+			{
+				ShowNewLinePanel(4);
+				nextCheckIndex = 5;
+			}
+			else
+			{
+				CheckIfUnlockNewLine(5);
+			}
+            break;
+		case 5:
+            if (gameManager.GetTotalScore() >= 100000 && gameManager.GetTotalScore() - lastHighScore < 100000)
+			{
+				ShowNewLinePanel(5);
+				nextCheckIndex = 6;
+			}
+			else
+			{
+				CheckIfUnlockNewLine(6);
+			}
+            break;
+		case 6:
+            if (gameManager.GetHighScore() >= 7000 && lastHighScore < 7000)
+			{
+				ShowNewLinePanel(6);
+				nextCheckIndex = 7;
+			}
+			else
+			{
+				CheckIfUnlockNewLine(7);
+			}
+            break;
+		case 7:
+            if (gameManager.GetTotalScore() >= 1000000 && gameManager.GetTotalScore() - lastHighScore < 1000000)
+			{
+				ShowNewLinePanel(7);
+				nextCheckIndex = 0;
+			}
+            break;
+        default:
+            break;
+        }
+		
+	}
+	
+	private void ShowNewLinePanel(int index)
+	{
+		newLinePanel.SetActive(true);
+		
+		GameObject[] lines = GameObject.FindGameObjectsWithTag("SelectLine");
+		
+		for (int i = 0; i < lines.Length; i++)
+		{
+			if (int.Parse(lines[i].name) == index)
+			{
+				lines[i].SetActive(true);
+			}
+			
+			else
+			{
+				lines[i].SetActive(false);
+			}
+		}
+		
+		gameOverPanel.SetActive(false);
+		newLinePanel.GetComponent<Animator>().Play("FadeIn");
 	}
 	
 }
