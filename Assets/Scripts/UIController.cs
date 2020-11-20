@@ -362,7 +362,7 @@ public class UIController : MonoBehaviour
 			}
             break;
         case 3:
-            if (gameManager.GetTotalScore() >= 30000 && gameManager.GetTotalScore() - lastHighScore < 30000)
+            if (gameManager.GetTotalScore() >= 30000 && gameManager.GetTotalScore() - gameManager.GetLastScore() < 30000)
 			{
 				ShowNewLinePanel(3);
 				nextCheckIndex = 4;
@@ -384,7 +384,7 @@ public class UIController : MonoBehaviour
 			}
             break;
 		case 5:
-            if (gameManager.GetTotalScore() >= 100000 && gameManager.GetTotalScore() - lastHighScore < 100000)
+            if (gameManager.GetTotalScore() >= 100000 && gameManager.GetTotalScore() - gameManager.GetLastScore() < 100000)
 			{
 				ShowNewLinePanel(5);
 				nextCheckIndex = 6;
@@ -406,7 +406,7 @@ public class UIController : MonoBehaviour
 			}
             break;
 		case 7:
-            if (gameManager.GetTotalScore() >= 1000000 && gameManager.GetTotalScore() - lastHighScore < 1000000)
+            if (gameManager.GetTotalScore() >= 1000000 && gameManager.GetTotalScore() - gameManager.GetLastScore() < 1000000)
 			{
 				ShowNewLinePanel(7);
 				nextCheckIndex = 0;
