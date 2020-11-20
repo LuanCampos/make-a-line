@@ -256,45 +256,13 @@ public class UIController : MonoBehaviour
 	
 	private void SelectIcon()
 	{
-		if (gameManager.linePrefab.name == "Line 7")
+		for (int i = 0; i < gameManager.lines.Length; i++)
 		{
-			ShowSelectedIcon(7);
+			if (gameManager.linePrefab == gameManager.lines[i])
+			{
+				ShowSelectedIcon(i);
+			}
 		}
-		
-		if (gameManager.linePrefab.name == "Line 6")
-		{
-			ShowSelectedIcon(6);
-		}
-		
-		if (gameManager.linePrefab.name == "Line 5")
-		{
-			ShowSelectedIcon(5);
-		}
-		
-		if (gameManager.linePrefab.name == "Line 4")
-		{
-			ShowSelectedIcon(4);
-		}
-		
-		if (gameManager.linePrefab.name == "Line 3")
-		{
-			ShowSelectedIcon(3);
-		}
-		
-		else if (gameManager.linePrefab.name == "Line 2")
-		{
-			ShowSelectedIcon(2);
-		}
-		
-		else if (gameManager.linePrefab.name == "Line 1")
-		{
-			ShowSelectedIcon(1);
-		}
-		
-		else
-		{
-			ShowSelectedIcon(0);
-		}	
 	}
 	
 	private void SelectLockers()
