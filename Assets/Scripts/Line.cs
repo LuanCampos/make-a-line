@@ -121,9 +121,12 @@ public class Line : MonoBehaviour
 					return new Vector2((points[2].x + mousePos.x) / 2, (points[2].y + mousePos.y) / 2);
 				}
 				
-				if ((oldLineXInBallY < ballX - .2f && newLineXInBallY > ballX - .2f) || (oldLineXInBallY > ballX + .2f && newLineXInBallY < ballX + .2f))
+				if ((ballY > 0f && oldLineYInBallX > ballY && newLineYInBallX > ballY) || (ballY < 0f && oldLineYInBallX < ballY && newLineYInBallX < ballY))
 				{
-					return new Vector2((points[2].x + mousePos.x) / 2, (points[2].y + mousePos.y) / 2);
+					if ((oldLineXInBallY < ballX - .2f && newLineXInBallY > ballX - .2f) || (oldLineXInBallY > ballX + .2f && newLineXInBallY < ballX + .2f))
+					{
+						return new Vector2((points[2].x + mousePos.x) / 2, (points[2].y + mousePos.y) / 2);
+					}
 				}
 			}
 
