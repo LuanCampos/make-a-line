@@ -109,7 +109,7 @@ public class Line : MonoBehaviour
 			float oldLineLength = Mathf.Sqrt(oldLineX * oldLineX + oldLineY * oldLineY);
 			float newLineLength = Mathf.Sqrt(newLineX * newLineX + newLineY * newLineY);
 			
-			if (ballLineLength < oldLineLength)
+			if (ballLineLength - .25f < oldLineLength)
 			{
 				float oldLineYInBallX = oldLineY / oldLineX * ballX;
 				float newLineYInBallX = newLineY / newLineX * ballX;
