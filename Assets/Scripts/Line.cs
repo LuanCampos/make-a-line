@@ -113,8 +113,15 @@ public class Line : MonoBehaviour
 			{
 				float oldLineYInBallX = oldLineY / oldLineX * ballX;
 				float newLineYInBallX = newLineY / newLineX * ballX;
+				float oldLineXInBallY = oldLineX / oldLineY * ballY;
+				float newLineXInBallY = newLineX / newLineY * ballY;
 				
 				if ((oldLineYInBallX < ballY - .2f && newLineYInBallX > ballY - .2f) || (oldLineYInBallX > ballY + .2f && newLineYInBallX < ballY + .2f))
+				{
+					return new Vector2((points[2].x + mousePos.x) / 2, (points[2].y + mousePos.y) / 2);
+				}
+				
+				if ((oldLineXInBallY < ballX - .2f && newLineXInBallY > ballX - .2f) || (oldLineXInBallY > ballX + .2f && newLineXInBallY < ballX + .2f))
 				{
 					return new Vector2((points[2].x + mousePos.x) / 2, (points[2].y + mousePos.y) / 2);
 				}
