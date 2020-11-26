@@ -14,9 +14,10 @@ public class GameManager : MonoBehaviour
 	public GameObject linePrefab;
 	public GameObject[] lines;
 	public AudioClip[] mySongs;
-	private AudioSource musicSource;
+	private AudioSource[] musicSource = new AudioSource[2];
 	private AudioSource[] sfxSource = new AudioSource[3];
 	private int usingSFX = 0;
+	private int usingMusic = 0;
 	
 	void Awake()
 	{
@@ -46,7 +47,8 @@ public class GameManager : MonoBehaviour
 	
 	private void CreateAudioSources()
 	{
-		musicSource = this.gameObject.AddComponent<AudioSource>();
+		musicSource[0] = this.gameObject.AddComponent<AudioSource>();
+		musicSource[1] = this.gameObject.AddComponent<AudioSource>();
 		sfxSource[0] = this.gameObject.AddComponent<AudioSource>();
 		sfxSource[1] = this.gameObject.AddComponent<AudioSource>();
 		sfxSource[2] = this.gameObject.AddComponent<AudioSource>();
@@ -159,11 +161,24 @@ public class GameManager : MonoBehaviour
 	
 	public void PlaySound(int index)
 	{
-		musicSource.loop = true;
-		musicSource.volume = 0f;
-		musicSource.clip = mySongs[index];
-		musicSource.Play();
-		StartCoroutine(StartFade(musicSource, 2f, .2f));
+		musicSource[usingMusic].loop = true;
+		musicSource[usingMusic].volume = 0f;
+		musicSource[usingMusic].clip = mySongs[index];
+		musicSource[usingMusic].Play();
+		
+		if (usingMusic == 0)
+		{
+			usingMusic = 1;
+			StartCoroutine(StartFade(musicSource[0], 3f, .2f));
+			StartCoroutine(StartFade(musicSource[1], .5f, 0f));
+		}
+		
+		else
+		{
+			usingMusic = 0;
+			StartCoroutine(StartFade(musicSource[1], 3f, .2f));
+			StartCoroutine(StartFade(musicSource[0], .5f, 0f));
+		}
 	}
 	
 	public void PlaySFX(int index, float volume)
@@ -196,10 +211,16 @@ public class GameManager : MonoBehaviour
 
         while (currentTime < duration)
         {
-            currentTime += Time.deltaTime;
+            currentTime += Time.unscaledDeltaTime;
             audioSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
             yield return null;
         }
+		
+		if (targetVolume == 0f)
+		{
+			audioSource.Stop();
+		}
+		
         yield break;
     }
 	
