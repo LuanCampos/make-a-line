@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9169806704958700808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9169806704958700814}
+  - component: {fileID: 9169806704958700815}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9169806704958700814
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169806704958700808}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9169806704958700815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169806704958700808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d6d69718e7060546b7d7aab6985b3ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTimeFreeze: 0
+  lastScore: 0
+  highScore: 0
+  totalScore: 0
+  lives: 3
+  linePrefab: {fileID: 3291226941507216718, guid: b456cc6921a51f34e8d086d2dc33aa82,
+    type: 3}
+  lines:
+  - {fileID: 3291226941507216718, guid: b456cc6921a51f34e8d086d2dc33aa82, type: 3}
+  - {fileID: 3291226941507216718, guid: ecb7e05adc1801143ba753ca0adc4958, type: 3}
+  - {fileID: 3291226941507216718, guid: 8e28f55f667d8324caec0eced0d0a0ac, type: 3}
+  - {fileID: 3291226941507216718, guid: be231c93dbc732a42b507488a57fff0d, type: 3}
+  - {fileID: 3291226941507216718, guid: 7636a64cfc550bd40bf5178c85867204, type: 3}
+  - {fileID: 3291226941507216718, guid: 7f5cf6ff7c4bd3d4eb154224db8414bd, type: 3}
+  - {fileID: 3291226941507216718, guid: f00fcf9434fec2b47a65f547b9a674ca, type: 3}
+  - {fileID: 3291226941507216718, guid: 4d0c3ba8099d2b74d857c7b7cc91a405, type: 3}
+  musicSource: {fileID: 0}
+  sfxSource: {fileID: 0}
+  mySongs:
+  - {fileID: 8300000, guid: 21b8a4b768e8aa446a97d06d69df7a02, type: 3}
+  - {fileID: 8300000, guid: ce789da62bf98d14baf7c365c75aae35, type: 3}
+  - {fileID: 8300000, guid: 781d7c0943236f9439ec7d7332ed52e3, type: 3}
+  - {fileID: 8300000, guid: 62f49a2056fa9fa48a0d5cd093f2648f, type: 3}

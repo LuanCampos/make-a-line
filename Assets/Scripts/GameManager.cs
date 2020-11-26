@@ -13,10 +13,15 @@ public class GameManager : MonoBehaviour
 	public int lives;
 	public GameObject linePrefab;
 	public GameObject[] lines;
+	public AudioClip[] mySongs;
+	private AudioSource musicSource;
+	private AudioSource[] sfxSource = new AudioSource[3];
+	private int usingSFX = 0;
 	
 	void Awake()
 	{
 		MakeSingleton();
+		CreateAudioSources();
 	}
 	
 	void Start()
@@ -25,7 +30,7 @@ public class GameManager : MonoBehaviour
 		LoadGame();
 	}
 	
-	void MakeSingleton()
+	private void MakeSingleton()
 	{
 		if (instance != null)
 		{
@@ -37,6 +42,14 @@ public class GameManager : MonoBehaviour
 			instance = this;
 			DontDestroyOnLoad(gameObject);
 		}
+	}
+	
+	private void CreateAudioSources()
+	{
+		musicSource = this.gameObject.AddComponent<AudioSource>();
+		sfxSource[0] = this.gameObject.AddComponent<AudioSource>();
+		sfxSource[1] = this.gameObject.AddComponent<AudioSource>();
+		sfxSource[2] = this.gameObject.AddComponent<AudioSource>();
 	}
 	
 	public void SelectLine(int index)
@@ -142,6 +155,36 @@ public class GameManager : MonoBehaviour
 		ES3.Save("totalScore", this.totalScore);
 		ES3.Save("lives", this.lives);
 		ES3.Save("currentLine", GetIndexOfCurrentLine());
+	}
+	
+	public void PlaySound(int index)
+	{
+		musicSource.loop = true;
+		musicSource.clip = mySongs[index];
+		musicSource.Play();
+	}
+	
+	public void PlaySFX(int index, float volume)
+	{
+		PlaySFX(index, volume, 1f);
+	}
+	
+	public void PlaySFX(int index, float volume, float pitch)
+	{
+		sfxSource[usingSFX].pitch = pitch;
+		sfxSource[usingSFX].volume = volume;
+		sfxSource[usingSFX].clip = mySongs[index];
+		sfxSource[usingSFX].Play();
+		
+		if (usingSFX < 2)
+		{
+			usingSFX ++;
+		}
+		
+		else
+		{
+			usingSFX = 0;
+		}
 	}
 	
 }

@@ -10,6 +10,7 @@ TagManager:
   - GetPoint
   - GetTime
   - LoseTime
+  - Shape
   layers:
   - Default
   - TransparentFX
