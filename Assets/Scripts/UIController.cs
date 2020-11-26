@@ -37,10 +37,16 @@ public class UIController : MonoBehaviour
 			gameManager = GameManager.instance;
 		}
 		
-		if (smallLifePanel.activeSelf)
+		if (SceneManager.GetActiveScene().name == "MainMenu")
 		{
 			ShowLives();
 			ShowHighScore();
+			gameManager.PlaySound(5);
+		}
+		
+		else
+		{
+			gameManager.PlaySound(6);
 		}
 	}
 	
@@ -190,6 +196,11 @@ public class UIController : MonoBehaviour
 	{
 		gameManager.SetLives(1);
 		ShowWeAreBackPanel();
+	}
+	
+	public void PlayButtonSound()
+	{
+		gameManager.PlaySFX(7, 1f, 1f);
 	}
 	
 	private void ShowLives()

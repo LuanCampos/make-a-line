@@ -160,6 +160,7 @@ public class GameManager : MonoBehaviour
 	public void PlaySound(int index)
 	{
 		musicSource.loop = true;
+		musicSource.volume = .2f;
 		musicSource.clip = mySongs[index];
 		musicSource.Play();
 	}

@@ -59,10 +59,12 @@ MonoBehaviour:
   - {fileID: 3291226941507216718, guid: 7f5cf6ff7c4bd3d4eb154224db8414bd, type: 3}
   - {fileID: 3291226941507216718, guid: f00fcf9434fec2b47a65f547b9a674ca, type: 3}
   - {fileID: 3291226941507216718, guid: 4d0c3ba8099d2b74d857c7b7cc91a405, type: 3}
-  musicSource: {fileID: 0}
-  sfxSource: {fileID: 0}
   mySongs:
   - {fileID: 8300000, guid: 21b8a4b768e8aa446a97d06d69df7a02, type: 3}
   - {fileID: 8300000, guid: ce789da62bf98d14baf7c365c75aae35, type: 3}
   - {fileID: 8300000, guid: 781d7c0943236f9439ec7d7332ed52e3, type: 3}
-  - {fileID: 8300000, guid: 62f49a2056fa9fa48a0d5cd093f2648f, type: 3}
+  - {fileID: 8300000, guid: 1f887a62fed76ab4daa178b1673b3957, type: 3}
+  - {fileID: 8300000, guid: a935d4969c456ee4e8c9283baca52eb6, type: 3}
+  - {fileID: 8300000, guid: 735ba61e8c19d8a4b9c33569a554af92, type: 3}
+  - {fileID: 8300000, guid: e466b141176476e49b5d1921d51e97d6, type: 3}
+  - {fileID: 8300000, guid: 134e9b883bf51aa4d9ab2d7db5cb2d95, type: 3}
