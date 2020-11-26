@@ -160,9 +160,10 @@ public class GameManager : MonoBehaviour
 	public void PlaySound(int index)
 	{
 		musicSource.loop = true;
-		musicSource.volume = .2f;
+		musicSource.volume = 0f;
 		musicSource.clip = mySongs[index];
 		musicSource.Play();
+		StartCoroutine(StartFade(musicSource, 2f, .2f));
 	}
 	
 	public void PlaySFX(int index, float volume)
@@ -187,5 +188,19 @@ public class GameManager : MonoBehaviour
 			usingSFX = 0;
 		}
 	}
+	
+	public static IEnumerator StartFade(AudioSource audioSource, float duration, float targetVolume)
+    {
+        float currentTime = 0;
+        float start = audioSource.volume;
+
+        while (currentTime < duration)
+        {
+            currentTime += Time.deltaTime;
+            audioSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
+            yield return null;
+        }
+        yield break;
+    }
 	
 }
