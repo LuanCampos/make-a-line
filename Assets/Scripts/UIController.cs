@@ -200,7 +200,7 @@ public class UIController : MonoBehaviour
 	
 	public void PlayButtonSound()
 	{
-		gameManager.PlaySFX(7, 1f, 1f);
+		gameManager.PlaySFX(7, .5f);
 	}
 	
 	private void ShowLives()

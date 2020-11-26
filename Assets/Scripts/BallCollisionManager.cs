@@ -26,7 +26,7 @@ public class BallCollisionManager : MonoBehaviour
 		
 		if (collision.gameObject.tag == "Shape")
         {
-			gameManager.PlaySFX(4, .4f, Random.Range(.5f, 2f));
+			gameManager.PlaySFX(4, .5f, Random.Range(.5f, 2f));
         }
     }
 	
@@ -34,19 +34,19 @@ public class BallCollisionManager : MonoBehaviour
 	{
 		if (col.gameObject.tag == "GetPoint")
         {
-			gameManager.PlaySFX(1, 9f);
+			gameManager.PlaySFX(1, .4f);
         }
 		
 		if (col.gameObject.tag == "GetTime")
         {
-			gameManager.PlaySFX(2, .7f, 1.8f);
+			gameManager.PlaySFX(2, .6f, 1.8f);
         }
 		
 		if (col.gameObject.tag == "LoseTime")
         {
-			gameManager.PlaySFX(3, 9f);
+			gameManager.PlaySFX(3, .9f);
 			cameraController.ShakeCamera();
-			//Handheld.Vibrate();
+			Handheld.Vibrate();
         }
 	
 	}

@@ -169,14 +169,14 @@ public class GameManager : MonoBehaviour
 		if (usingMusic == 0)
 		{
 			usingMusic = 1;
-			StartCoroutine(StartFade(musicSource[0], 3f, .2f));
+			StartCoroutine(StartFade(musicSource[0], 3f, .3f));
 			StartCoroutine(StartFade(musicSource[1], .5f, 0f));
 		}
 		
 		else
 		{
 			usingMusic = 0;
-			StartCoroutine(StartFade(musicSource[1], 3f, .2f));
+			StartCoroutine(StartFade(musicSource[1], 3f, .3f));
 			StartCoroutine(StartFade(musicSource[0], .5f, 0f));
 		}
 	}
