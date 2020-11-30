@@ -41,12 +41,12 @@ public class UIController : MonoBehaviour
 		{
 			ShowLives();
 			ShowHighScore();
-			gameManager.PlaySound(5);
+			//gameManager.PlaySound(5);
 		}
 		
 		else
 		{
-			gameManager.PlaySound(6);
+			//gameManager.PlaySound(6);
 		}
 	}
 	

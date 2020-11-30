@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GetPointCollider : MonoBehaviour
 {
+	[SerializeField]
+	private GameObject particlesPrefab = null;	
 	private GameplayManager gameplayManager;
 	
 	void Start()
@@ -16,6 +18,7 @@ public class GetPointCollider : MonoBehaviour
 		if (col.gameObject.tag == "Ball")
 		{
 			gameplayManager.AddScore(150f);
+			Instantiate(particlesPrefab, transform.position, Quaternion.identity);
 			Destroy(gameObject);
 		}
 		

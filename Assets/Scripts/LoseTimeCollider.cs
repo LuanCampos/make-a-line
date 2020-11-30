@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LoseTimeCollider : MonoBehaviour
 {
+	[SerializeField]
+	private GameObject particlesPrefab = null;	
 	private GameplayManager gameplayManager;
 	
 	void Start()
@@ -16,6 +18,7 @@ public class LoseTimeCollider : MonoBehaviour
 		if (col.gameObject.tag == "Ball")
 		{
 			gameplayManager.AddTime(-10f);
+			Instantiate(particlesPrefab, transform.position, Quaternion.identity);
 			Destroy(gameObject);
 		}
 	}

@@ -112,6 +112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca320c4aa7d4f649b9ba9cb75815e49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particlesPrefab: {fileID: 4840597718695757929, guid: 629e5b17b85a6e74ca7f4aaa4482c828,
+    type: 3}
 --- !u!58 &-6034964258307096277
 CircleCollider2D:
   m_ObjectHideFlags: 0
