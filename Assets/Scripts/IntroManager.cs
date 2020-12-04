@@ -19,7 +19,7 @@ public class IntroManager : MonoBehaviour
 	
 	private IEnumerator LetIntroPlay()
 	{
-		yield return new WaitForSecondsRealtime(4.2f);
+		yield return new WaitForSecondsRealtime(4.5f);
 		GameManager.instance.SetHasShowIntro();
 		Destroy(gameObject);
 	}
