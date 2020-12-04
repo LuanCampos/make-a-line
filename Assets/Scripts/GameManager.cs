@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 	private AudioSource[] sfxSource = new AudioSource[3];
 	private int usingSFX = 0;
 	private int usingMusic = 0;
+	private bool hasShowIntro = false;
 	
 	void Awake()
 	{
@@ -223,5 +224,15 @@ public class GameManager : MonoBehaviour
 		
         yield break;
     }
+	
+	public bool HasShowIntro()
+	{
+		return hasShowIntro;
+	}
+	
+	public void SetHasShowIntro()
+	{
+		hasShowIntro = true;
+	}
 	
 }
