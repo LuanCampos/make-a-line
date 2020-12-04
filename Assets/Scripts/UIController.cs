@@ -41,12 +41,12 @@ public class UIController : MonoBehaviour
 		{
 			ShowLives();
 			ShowHighScore();
-			//gameManager.PlaySound(5);
+			//gameManager.PlaySound(6);
 		}
 		
 		else
 		{
-			//gameManager.PlaySound(6);
+			//gameManager.PlaySound(7);
 		}
 	}
 	
@@ -200,7 +200,7 @@ public class UIController : MonoBehaviour
 	
 	public void PlayButtonSound()
 	{
-		gameManager.PlaySFX(7, .5f);
+		gameManager.PlaySFX(5, .5f);
 	}
 	
 	private void ShowLives()

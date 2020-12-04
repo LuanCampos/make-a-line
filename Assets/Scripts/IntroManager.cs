@@ -20,6 +20,11 @@ public class IntroManager : MonoBehaviour
 	
 	private void ShowMenu()
 	{
+		GameObject.Find("Menu Panel").GetComponent<Animator>().Play("FadeFromGame");
+	}
+	
+	private void ShowMenuFirstTime()
+	{
 		GameObject.Find("Menu Panel").GetComponent<Animator>().Play("FadeFromIntro");
 	}
 	
@@ -27,7 +32,7 @@ public class IntroManager : MonoBehaviour
 	{
 		yield return new WaitForSecondsRealtime(4.5f);
 		GameManager.instance.SetHasShowIntro();
-		ShowMenu();
+		ShowMenuFirstTime();
 		Destroy(gameObject);
 	}
 
