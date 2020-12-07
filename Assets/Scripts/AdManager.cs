@@ -14,12 +14,13 @@ public class AdManager : MonoBehaviour
 	private GameManager gameManager;
 	private bool failedToLoad = false;
 	private bool showAdButton = false;
+	private bool badSignal = false;
 	
 	void Update()
 	{
 		if (showAdButton == true)
 		{
-			if (failedToLoad)
+			if (failedToLoad || badSignal)
 			{
 				showAdButton = false;
 				StartCoroutine(NoConnection());
@@ -30,6 +31,9 @@ public class AdManager : MonoBehaviour
 				showAdButton = false;
 				this.rewardedAd.Show();
 			}
+			
+			StartCoroutine(CheckBadSignal());
+			
 		}
 	}
 	
@@ -83,6 +87,12 @@ public class AdManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
         uiController.ShowNoConnectionPanel();
     }
+	
+	IEnumerator CheckBadSignal()
+	{
+		yield return new WaitForSecondsRealtime(8f);
+		badSignal = true;
+	}
 	
 	public void HandleRewardedAdLoaded(object sender, EventArgs args)
     {
