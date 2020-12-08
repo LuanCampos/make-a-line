@@ -120,7 +120,6 @@ public class UIController : MonoBehaviour
 	
 	public void ShowNoLivesPanel()
 	{
-		adManager.StartAd();
 		noLivesPanel.SetActive(true);
 		bigLifePanel.GetComponent<Animator>().Play("ZeroLives");
 	}
@@ -139,6 +138,7 @@ public class UIController : MonoBehaviour
 		noConnectionPanel.SetActive(false);
 		weAreBackPanel.SetActive(true);
 		StartCoroutine(ShowLivesAnimation());
+		adManager.StartAd();
 	}
 	
 	public void PlayAgain()
@@ -276,7 +276,7 @@ public class UIController : MonoBehaviour
 			bigLifePanel = GameObject.Find("Big Life Panel");
 			newHighScorePanel = GameObject.Find("New High Score Panel");
 			newLinePanel = GameObject.Find("New Line Panel");
-			adManager = GameObject.Find("Player").GetComponent<AdManager>();
+			adManager = GameObject.Find("Game Manager").GetComponent<AdManager>();
 			finalScoreText = GameObject.Find("Final Score Text").GetComponent<TextMeshProUGUI>();
 			pausePanel.SetActive(false);
 			gameOverPanel.SetActive(false);

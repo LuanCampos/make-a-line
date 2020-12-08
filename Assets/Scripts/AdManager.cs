@@ -10,11 +10,16 @@ using System.Collections.Generic;
 public class AdManager : MonoBehaviour
 {
     private RewardedAd rewardedAd;
-	private UIController uiController;
 	private GameManager gameManager;
 	private bool failedToLoad = false;
 	private bool showAdButton = false;
 	private bool badSignal = false;
+	private string adUnitId;
+	
+	void Start()
+	{
+		StartCoroutine(WakeUp());
+	}
 	
 	void Update()
 	{
@@ -22,13 +27,13 @@ public class AdManager : MonoBehaviour
 		{
 			if (failedToLoad || badSignal)
 			{
-				showAdButton = false;
+				SetVariables();
 				StartCoroutine(NoConnection());
 			}
 		
 			if (this.rewardedAd.IsLoaded())
 			{
-				showAdButton = false;
+				SetVariables();
 				this.rewardedAd.Show();
 			}
 			
@@ -37,12 +42,10 @@ public class AdManager : MonoBehaviour
 		}
 	}
 	
-    public void StartAd()
-    {
+	private void Initialize()
+	{
 		gameManager = GameManager.instance;
-		uiController = GameObject.Find("UI Controller").GetComponent<UIController>();
 		
-		string adUnitId;
         #if UNITY_ANDROID
             // adUnitId = "ca-app-pub-2964040886574646/5411926434"; // Mine
 			adUnitId = "ca-app-pub-3940256099942544/5224354917"; // Test
@@ -52,8 +55,18 @@ public class AdManager : MonoBehaviour
         #else
             adUnitId = "unexpected_platform";
         #endif
-
-        this.rewardedAd = new RewardedAd(adUnitId);
+	}
+	
+	private void SetVariables()
+	{
+		failedToLoad = false;
+		showAdButton = false;
+		badSignal = false;
+	}
+	
+    public void StartAd()
+    {
+		this.rewardedAd = new RewardedAd(adUnitId);
 		
         // Called when an ad request has successfully loaded.
         this.rewardedAd.OnAdLoaded += HandleRewardedAdLoaded;
@@ -82,15 +95,23 @@ public class AdManager : MonoBehaviour
 		showAdButton = true;
 	}
 	
+	IEnumerator WakeUp()
+	{
+		yield return new WaitForSecondsRealtime(3f);
+		Initialize();
+		SetVariables();
+		StartAd();
+	}
+	
 	IEnumerator NoConnection()
     {
-        yield return new WaitForSecondsRealtime(1f);
-        uiController.ShowNoConnectionPanel();
+        yield return new WaitForSecondsRealtime(.5f);
+        GameObject.Find("UI Controller").GetComponent<UIController>().ShowNoConnectionPanel();
     }
 	
 	IEnumerator CheckBadSignal()
 	{
-		yield return new WaitForSecondsRealtime(8f);
+		yield return new WaitForSecondsRealtime(3f);
 		badSignal = true;
 	}
 	
@@ -114,13 +135,13 @@ public class AdManager : MonoBehaviour
     public void HandleRewardedAdFailedToShow(object sender, AdErrorEventArgs args)
     {
         MonoBehaviour.print("HandleRewardedAdFailedToShow event received with message: " + args.Message);
-		uiController.ShowNoConnectionPanel();
+		GameObject.Find("UI Controller").GetComponent<UIController>().ShowNoConnectionPanel();
     }
 
     public void HandleRewardedAdClosed(object sender, EventArgs args)
     {
         Debug.Log("HandleRewardedAdClosed event received");
-		uiController.ShowWeAreBackPanel();
+		GameObject.Find("UI Controller").GetComponent<UIController>().ShowWeAreBackPanel();
     }
 
     public void HandleUserEarnedReward(object sender, Reward args)
