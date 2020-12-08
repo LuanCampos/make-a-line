@@ -138,7 +138,6 @@ public class UIController : MonoBehaviour
 		noConnectionPanel.SetActive(false);
 		weAreBackPanel.SetActive(true);
 		StartCoroutine(ShowLivesAnimation());
-		adManager.StartAd();
 	}
 	
 	public void PlayAgain()

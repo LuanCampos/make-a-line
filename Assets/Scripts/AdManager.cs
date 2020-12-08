@@ -11,10 +11,10 @@ public class AdManager : MonoBehaviour
 {
     private RewardedAd rewardedAd;
 	private GameManager gameManager;
+	private string adUnitId;
 	private bool failedToLoad = false;
 	private bool showAdButton = false;
 	private bool badSignal = false;
-	private string adUnitId;
 	
 	void Start()
 	{
@@ -27,18 +27,26 @@ public class AdManager : MonoBehaviour
 		{
 			if (failedToLoad || badSignal)
 			{
-				SetVariables();
+				if (badSignal)
+				{
+					SetVariables();
+				}
+				
+				else
+				{
+					StartAd();
+				}
+				
 				StartCoroutine(NoConnection());
 			}
 		
-			if (this.rewardedAd.IsLoaded())
+			else if (this.rewardedAd.IsLoaded())
 			{
 				SetVariables();
 				this.rewardedAd.Show();
 			}
 			
 			StartCoroutine(CheckBadSignal());
-			
 		}
 	}
 	
@@ -66,6 +74,8 @@ public class AdManager : MonoBehaviour
 	
     public void StartAd()
     {
+		SetVariables();
+		
 		this.rewardedAd = new RewardedAd(adUnitId);
 		
         // Called when an ad request has successfully loaded.
@@ -97,9 +107,8 @@ public class AdManager : MonoBehaviour
 	
 	IEnumerator WakeUp()
 	{
-		yield return new WaitForSecondsRealtime(3f);
 		Initialize();
-		SetVariables();
+		yield return new WaitForSecondsRealtime(2f);
 		StartAd();
 	}
 	
@@ -111,8 +120,11 @@ public class AdManager : MonoBehaviour
 	
 	IEnumerator CheckBadSignal()
 	{
-		yield return new WaitForSecondsRealtime(3f);
-		badSignal = true;
+		yield return new WaitForSecondsRealtime(2f);
+		if (showAdButton)
+		{
+			badSignal = true;
+		}
 	}
 	
 	public void HandleRewardedAdLoaded(object sender, EventArgs args)
@@ -136,12 +148,14 @@ public class AdManager : MonoBehaviour
     {
         MonoBehaviour.print("HandleRewardedAdFailedToShow event received with message: " + args.Message);
 		GameObject.Find("UI Controller").GetComponent<UIController>().ShowNoConnectionPanel();
+		StartAd();
     }
 
     public void HandleRewardedAdClosed(object sender, EventArgs args)
     {
         Debug.Log("HandleRewardedAdClosed event received");
 		GameObject.Find("UI Controller").GetComponent<UIController>().ShowWeAreBackPanel();
+		StartAd();
     }
 
     public void HandleUserEarnedReward(object sender, Reward args)
