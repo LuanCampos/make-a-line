@@ -100,6 +100,16 @@ public class GameplayManager : MonoBehaviour
 	public void AddTime(float addTime)
 	{
 		this.addTime += addTime;
+		
+		if (addTime < 0f)
+		{
+			StartCoroutine(TimerIsRed());
+		}
+		
+		if (addTime > 0f)
+		{
+			StartCoroutine(TimerIsGreen());
+		}
 	}
 	
 	private void CheckGameOver()
@@ -145,6 +155,28 @@ public class GameplayManager : MonoBehaviour
 		score += Time.deltaTime * 10f + bonus;
 		bonus = 0f;
 		scoreText.text = score.ToString("#.");
+	}
+	
+	private IEnumerator TimerIsRed()
+	{
+		timerText.color = new Color32(255, 180, 180, 255);
+		timerText.fontSize = 65;
+		timerText.fontSharedMaterial.SetColor(ShaderUtilities.ID_GlowColor, new Color32(100, 0, 0, 255));
+		yield return new WaitForSecondsRealtime(1f);
+		timerText.color = new Color32(200, 255, 255, 255);
+		timerText.fontSize = 60;
+		timerText.fontSharedMaterial.SetColor(ShaderUtilities.ID_GlowColor, new Color32(0, 191, 191, 255));
+	}
+	
+	private IEnumerator TimerIsGreen()
+	{
+		timerText.color = new Color32(180, 255, 180, 255);
+		timerText.fontSize = 65;
+		timerText.fontSharedMaterial.SetColor(ShaderUtilities.ID_GlowColor, new Color32(0, 191, 0, 255));
+		yield return new WaitForSecondsRealtime(1f);
+		timerText.color = new Color32(200, 255, 255, 255);
+		timerText.fontSize = 60;
+		timerText.fontSharedMaterial.SetColor(ShaderUtilities.ID_GlowColor, new Color32(0, 191, 191, 255));
 	}
 	
 	private IEnumerator InitialTimer()
