@@ -18,6 +18,7 @@ public class UIController : MonoBehaviour
 	private GameObject bigLifePanel;
 	private GameObject newHighScorePanel;
 	private GameObject newLinePanel;
+	private GameObject[] linesToUnlock;
 	private GameManager gameManager;
 	private AdManager adManager;
 	private TextMeshProUGUI finalScoreText;
@@ -115,6 +116,7 @@ public class UIController : MonoBehaviour
 		}
 		
 		gameManager.SaveGame();
+		CheckExistentLines();
 		CheckIfUnlockNewLine(1);
 	}
 	
@@ -345,6 +347,13 @@ public class UIController : MonoBehaviour
 		}
 	}
 	
+	private void CheckExistentLines()
+	{
+		newLinePanel.SetActive(true);
+		linesToUnlock = GameObject.FindGameObjectsWithTag("SelectLine");
+		newLinePanel.SetActive(false);
+	}
+	
 	private void CheckIfUnlockNewLine(int index)
 	{
 		switch(index)
@@ -432,18 +441,16 @@ public class UIController : MonoBehaviour
 	{
 		newLinePanel.SetActive(true);
 		
-		GameObject[] lines = GameObject.FindGameObjectsWithTag("SelectLine");
-		
-		for (int i = 0; i < lines.Length; i++)
+		for (int i = 0; i < linesToUnlock.Length; i++)
 		{
-			if (int.Parse(lines[i].name) == index)
+			if (int.Parse(linesToUnlock[i].name) == index)
 			{
-				lines[i].SetActive(true);
+				linesToUnlock[i].SetActive(true);
 			}
 			
 			else
 			{
-				lines[i].SetActive(false);
+				linesToUnlock[i].SetActive(false);
 			}
 		}
 		
